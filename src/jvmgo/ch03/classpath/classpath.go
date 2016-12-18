@@ -17,9 +17,8 @@ func Parse(jreOption, cpOption string) *Classpath {
 	cp.parseUserClasspath(cpOption)
 	return cp
 }
-//启动类和拓展类路径。注意
+//启动类和拓展类路径
 func (self *Classpath) parseBootAndExtClasspath(jreOption string) {
-	//找到jre目录
 	jreDir := getJreDir(jreOption)
 	/*filepath.Join:
 

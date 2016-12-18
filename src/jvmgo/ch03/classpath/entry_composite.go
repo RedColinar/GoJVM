@@ -11,7 +11,6 @@ func newCompositeEntry(pathList string) CompositeEntry{
 	//["a" "b" "c"]
 	for _, path := range strings.Split(pathList,pathListSeparator) {
 		entry := newEntry(path)
-		//
 		compositeEntry = append(compositeEntry, entry)
 	}
 	return compositeEntry
