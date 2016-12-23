@@ -1,8 +1,9 @@
 package classfile
-
+//ConstantInfo是个接口
 type ConstantPool []ConstantInfo
 
 func readConstantPool(reader *ClassReader) ConstantPool{
+	//常量池的容量
 	cpCount := int(reader.readUint16())
 	//用make函数来创建ConstantInfo类型切片
 	cp := make([]ConstantInfo,cpCount)
@@ -22,7 +23,7 @@ func readConstantPool(reader *ClassReader) ConstantPool{
 func (self ConstantPool) getConstantInfo(index uint16) ConstantInfo{
 	if cpInfo := self[index];cpInfo != nil{
 		return cpInfo
-	}
+	
 	panic("Invalid constant pool index!")
 }
 //从常量池查找字段或方法的名字和描述符
