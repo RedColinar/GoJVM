@@ -4,26 +4,25 @@ import "fmt"
 //反映了java虚拟机规范定义的class文件格式
 type ClassFile struct {
 	//magic			uint32
-	minorVersion	uint32
-	majorVersion	uint32
+	minorVersion	uint16
+	majorVersion	uint16
 	constantPool	ConstantPool
 	accessFlags		uint16
 	thisClass		uint16
 	superClass		uint16
 	interfaces		[]uint16
-	fields			[] *MemberInfo
-	methods			[] *MemberInfo
-	attributes		[] AttributeInfo
+	fields			[]*MemberInfo
+	methods			[]*MemberInfo
+	attributes		[]AttributeInfo
 }
 //把字节解析成ClassFile结构体
 func Parse(classData []byte) (cf *ClassFile,err error){
 	defer func() {
 		if r := recover(); r !=nil{
 			var ok bool
-			err, ok = r.(error){
-				if !ok{
-					err = fmt.Errorf("%v", r)
-				}
+			err, ok = r.(error)
+			if !ok{
+				err = fmt.Errorf("%v", r)
 			}
 		}
 	}()
@@ -64,14 +63,24 @@ func (self *ClassFile) readAndCheckVersion(reader *ClassReader){
 	}
 	panic("java.lang.UnsupportedClassVersionError!")
 }
+//从常量池查找类名
 func (self *ClassFile) ClassName() string{
-
+	return self.constantPool.getClassName(self.thisClass)
 }
+//从常量池查找超类类名
 func (self *ClassFile) SuperClassName() string{
-
+	if self.superClass > 0{
+		return self.constantPool.getClassName(self.superClass)
+	}
+	return ""//只有java.lang.Object 没有超类
 }
-func (self *ClassFile) InterfaceName() []string{
-
+//查找接口名
+func (self *ClassFile) InterfaceNames() []string{
+	interfaceNames := make([]string,len(self.interfaces))
+	for i, cpIndex := range self.interfaces{
+		interfaceNames[i] = self.constantPool.getClassName(cpIndex)
+	}
+	return interfaceNames
 }
 //下面的方法是Getter方法，把结构体的字段暴露给其他包使用
 func (self *ClassFile) MinorVersion() uint16{
@@ -79,4 +88,16 @@ func (self *ClassFile) MinorVersion() uint16{
 }
 func (self *ClassFile) MajorVersion() uint16{
 	return self.majorVersion
+}
+func (self *ClassFile) ConstantPool() ConstantPool{
+	return self.constantPool
+}
+func (self *ClassFile) AccessFlags() uint16{
+	return self.accessFlags
+}
+func (self *ClassFile) Fields() []*MemberInfo{
+	return self.fields
+}
+func (self *ClassFile) Methods() []*MemberInfo{
+	return self.methods
 }

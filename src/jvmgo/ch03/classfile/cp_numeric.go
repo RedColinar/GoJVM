@@ -7,7 +7,7 @@ type ConstantIntegerInfo struct{
 }
 func (self *ConstantIntegerInfo) readInfo(reader *ClassReader){
 	//先读取uint32数据，再转换成int32类型
-	bytes :=reader.reaUint32()
+	bytes :=reader.readUint32()
 	self.val = int32(bytes)
 }
 

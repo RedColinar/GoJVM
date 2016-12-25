@@ -1,6 +1,8 @@
 package classfile
 //定义注解@Deprecated
 type DeprecatedAttribute struct {
+	//u2 attribute_name_index
+	//u4 attribute_length,由于不包含任何数据，所以attribute_length必须是0
 	MarkerAttribute
 }
 //定义关键字synthetic

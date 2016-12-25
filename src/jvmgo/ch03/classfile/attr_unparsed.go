@@ -6,6 +6,6 @@ type UnparsedAttribute struct {
 	info []byte
 }
 
-func (self *UnparsedAttribute) readInfo(reader *CLassReader){
+func (self *UnparsedAttribute) readInfo(reader *ClassReader){
 	self.info = reader.readBytes(self.length)
 }
