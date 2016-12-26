@@ -14,6 +14,11 @@ type ClassFile struct {
 	fields			[]*MemberInfo
 	methods			[]*MemberInfo
 	attributes		[]AttributeInfo
+	/*
+	read(reader *ClassReader)
+	readAndCheckMagic(reader *ClassReader)
+	readAndCheckVersion(reader *ClassReader)
+	*/
 }
 //把字节解析成ClassFile结构体
 func Parse(classData []byte) (cf *ClassFile,err error){
@@ -26,7 +31,7 @@ func Parse(classData []byte) (cf *ClassFile,err error){
 			}
 		}
 	}()
-
+	//读取字节码，并解析
 	cr :=  &ClassReader{classData}
 	cf = &ClassFile{}
 	cf.read(cr)
@@ -36,7 +41,14 @@ func Parse(classData []byte) (cf *ClassFile,err error){
 func (self *ClassFile) read(reader *ClassReader){
 	self.readAndCheckMagic(reader)
 	self.readAndCheckVersion(reader)
-	//self.constantPool = readConstantPool(reader)
+	self.constantPool = readConstantPool(reader)
+	self.accessFlags = reader.readUint16()
+	self.thisClass = reader.readUint16()
+	self.superClass = reader.readUint16()
+	self.interfaces = reader.readUint16s()
+	self.fields = readMembers(reader,self.constantPool)
+	self.methods = readMembers(reader,self.constantPool)
+	self.attributes = readAttributes(reader,self.constantPool)
 
 }
 //魔数，u43很多文件格式都会规定满足该格式的文件必须以固定字节开头

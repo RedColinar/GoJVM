@@ -2,11 +2,23 @@ package classpath
 
 import "os"
 import "path/filepath"
-
+//Entry接口
+/*type Entry interface{
+	readClass(className string) ([]byte,Entry,error)
+	//String()方法相当于toString()
+	String() string
+}*/
 type Classpath struct {
 	bootClasspath Entry
 	extClasspath Entry
 	userClasspath Entry
+
+	/*方法
+	parseBootAndExtClasspath(jreOption string)
+	parseUserClasspath(cpOption string)
+	ReadClass(className string) ([]byte,Entry,error)
+	String()
+	*/
 }
 //使用-Xjre选项解析启动类路径和拓展类路径
 //使用-classpath/-cp选项解析用户类路径
