@@ -1,9 +1,8 @@
-package main
+ package main
 
 import  "fmt"
-import	"strings"
-import	"jvmgo/ch04/classfile"
-import	"jvmgo/ch04/classpath"
+import	"jvmgo/ch04/rtda"
+
 
 
 func main() {
@@ -19,48 +18,41 @@ func main() {
 	}
 }
 func startJVM(cmd *Cmd) {
-	/*classpath是jvmgo/chXX/classpath下的classpath.go
-	文件名.方法名
-	返回Classpath结构体的指针，该结构体有三个接口以及一个readClass()方法	
-	bootClasspath Entry ,extClasspath Entry ,userClasspath Entry
-	*/
-	cp := classpath.Parse(cmd.XjreOption, cmd.cpOption)
-	className := strings.Replace(cmd.class, ".", "/", -1)
-	//这个loadClass()用来读取class文件
-	cf := loadClass(className,cp)
-	fmt.Println(cmd.class)
-	//把class文件的一些重要的信息打印出来
-	printClassInfo(cf)
+	frame := rtda.NewFrame(100,100)
+	testLocalVars(frame.LocalVars())
+	testOperandStack(frame.OperandStack())
 }
-//classpath.Classpath包含好多东西，包括读类文件的方法
-func loadClass(className string,cp *classpath.Classpath) *classfile.ClassFile{
-	//读取的字节码[]byte赋给classData，核心方法是这个Classpath中的ReadClass(className)
-	classData, _, err := cp.ReadClass(className)
-	if err != nil {
-		panic(err)
-	}
-	//cf是ClassFile结构体的指针
-	cf, err := classfile.Parse(classData)
-	if err != nil {
-		panic(err)
-	}
-	return cf
+func testLocalVars(vars rtda.LocalVars) {
+	vars.SetInt(0,100)
+	vars.SetInt(1,-100)
+	vars.SetLong(2,2997924580)
+	vars.SetLong(4,-2997924580)
+	vars.SetFloat(6,3.1415926)
+	vars.SetDouble(7,2.71828182845)
+	vars.SetRef(9,nil)
+
+	println(vars.GetInt(0))
+	println(vars.GetInt(1))
+	println(vars.GetLong(2))
+	println(vars.GetLong(4))
+	println(vars.GetFloat(6))
+	println(vars.GetDouble(7))
+	println(vars.GetRef(9))
 }
 
-func printClassInfo(cf *classfile.ClassFile){
-	fmt.Printf("version: %v.%v\n",cf.MajorVersion(),cf.MinorVersion())
-	fmt.Printf("constants count: %v\n",len(cf.ConstantPool()))
-	fmt.Printf("access flags: 0x%x\n",cf.AccessFlags())
-	fmt.Printf("this class: %v\n",cf.ClassName())
-	fmt.Printf("super class: %v\n",cf.SuperClassName())
-	fmt.Printf("interfaces: %v\n",cf.InterfaceNames())
-	fmt.Printf("fields count: %v\n",len(cf.Fields()))
-	for _, f :=  range cf.Fields(){
-		fmt.Printf("	%s\n",f.Name())
-	}
-	fmt.Printf("methods count:%v\n",len(cf.Methods()))
-	for _, m :=	range cf.Methods() {
-		fmt.Printf("	%s\n",m.Name())
-	}
-
+func  testOperandStack(ops *rtda.OperandStack) {
+	ops.PushInt(100)
+	ops.PushInt(-100)
+	ops.PushLong(2997924580)
+	ops.PushLong(-2997924580)
+	ops.PushFloat(3.1415926)
+	ops.PushDouble(2.71828182845)
+	ops.PushRef(nil)
+	println(ops.PopRef())
+	println(ops.PopDouble())
+	println(ops.PopFloat())
+	println(ops.PopLong())
+	println(ops.PopLong())
+	println(ops.PopInt())
+	println(ops.PopInt())
 }

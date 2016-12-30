@@ -31,7 +31,7 @@ func (self *Stack) pop() *Frame{
 	top := self._top
 	self._top = top.lower
 	top.lower = nil
-	size--
+	self.size--
 	return top
 }
 //返回栈顶
@@ -39,5 +39,4 @@ func (self *Stack) top() *Frame{
 	if self._top == nil{
 		panic("jvm stack is empty!")
 	}
-	return self._top
- }
+	return self._top }

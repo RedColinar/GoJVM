@@ -34,17 +34,17 @@ func (self LocalVars) SetLong(index uint,val int64) {
 //int64对应java的long
 func (self LocalVars) GetLong(index uint) int64 {
 	low := uint32(self[index].num)
-	high :=  uint32(self[inde+1].num)
+	high :=  uint32(self[index+1].num)
 	return int64(high) << 32 | int64(low)
 }
 //double变量可以先转成long型，在按照long类型处理
 func (self LocalVars) SetDouble(index uint,val  float64){
-	bits := math.FLoat64bits(val)
+	bits := math.Float64bits(val)
 	self.SetLong(index ,int64(bits))
 }
 func (self LocalVars) GetDouble(index uint) float64{
 	bits := uint64(self.GetLong(index))
-	return math.FLoat64frombits(bits)
+	return math.Float64frombits(bits)
 }
 //引用值
 func (self LocalVars) SetRef(index  uint,ref *Object){
