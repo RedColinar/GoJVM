@@ -10,8 +10,8 @@ type ALOAD_2 struct{ base.NoOperandsInstruction }
 type ALOAD_3 struct{ base.NoOperandsInstruction }
 
 func _aload(frame *rtda.Frame,index uint){
-	val := frame.LocalVars().GetInt(index)
-	frame.OperandStack().PushInt(val)
+	val := frame.LocalVars().GetRef(index)
+	frame.OperandStack().PushRef(val)
 }
 func (self *ALOAD) Execute(frame *rtda.Frame){
 	_aload(frame,uint(self.Index))
