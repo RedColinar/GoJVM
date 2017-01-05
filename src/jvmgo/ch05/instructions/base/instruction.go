@@ -1,18 +1,20 @@
 package base
 
 import "jvmgo/ch05/rtda"
-
+//指令接口，所有指令都实现这个接口
 type Instruction interface {
 	//FetchOperands()提取操作数
 	FetchOperands(reader *BytecodeReader)
 	//Excute执行指令逻辑
 	Execute(frame *rtda.Frame)
 }
-
+//隐含操作数的命令，嵌套NoOperandsInstruction,
+//因为不需要取操作数
 type NoOperandsInstruction struct {}
 
 func (self *NoOperandsInstruction) FetchOperands(reader *BytecodeReader){}
-//跳转指令
+//跳转指令嵌套BranchInstruction，
+//定义跳转的偏移量，偏移量都是取两字节的操作数，
 type BranchInstruction struct {
 	Offset int
 }
@@ -20,7 +22,8 @@ type BranchInstruction struct {
 func (self *BranchInstruction) FetchOperands(reader *BytecodeReader){
 	self.Offset = int(reader *ReadInt16())
 }
-
+//需要一个局部变量表索引的嵌套Index8Instruction
+//这个局部变量表索引读取8位数据获取
 type Index8Instruction struct {
 	//局部变量表索引
 	Index uint
