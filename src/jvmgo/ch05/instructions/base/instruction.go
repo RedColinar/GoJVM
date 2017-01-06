@@ -20,7 +20,7 @@ type BranchInstruction struct {
 }
 
 func (self *BranchInstruction) FetchOperands(reader *BytecodeReader){
-	self.Offset = int(reader *ReadInt16())
+	self.Offset = int(reader.ReadInt16())
 }
 //需要一个局部变量表索引的嵌套Index8Instruction
 //这个局部变量表索引读取8位数据获取

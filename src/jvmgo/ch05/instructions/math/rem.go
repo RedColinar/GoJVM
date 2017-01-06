@@ -22,8 +22,8 @@ func (self *IREM) Execute(frame *rtda.Frame){
 }
 func (self *LREM) Execute(frame *rtda.Frame){
 	stack := frame.OperandStack()
-	v2 := stack.PopInt()
-	v1 := stack.PopInt()
+	v2 := stack.PopLong()
+	v1 := stack.PopLong()
 	if v2 == 0{
 		panic("java.lang.ArithmeticExeception: / by zero")
 	}
@@ -36,14 +36,20 @@ func (self *LREM) Execute(frame *rtda.Frame){
 func (self *DREM) Execute(frame *rtda.Frame){
 	stack := frame.OperandStack()
 	v2 := stack.PopDouble()
-	v1 := satck.PopDouble()
+	v1 := stack.PopDouble()
+	if v2 == 0{
+		panic("java.lang.ArithmeticExeception: / by zero")
+	}
 	result := math.Mod(v1,v2)
 	stack.PushDouble(result)
 }
 func (self *FREM) Execute(frame *rtda.Frame){
 	stack := frame.OperandStack()
-	v2 := stack.PopDouble()
-	v1 := satck.PopDouble()
-	result := math.Mod(v1,v2)
+	v2 := stack.PopFloat()
+	v1 := stack.PopFloat()
+	if v2 == 0{
+		panic("java.lang.ArithmeticExeception: / by zero")
+	}
+	result := float32(math.Mod(float64(v1),float64(v2)))
 	stack.PushFloat(result)
 }

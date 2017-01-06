@@ -18,5 +18,5 @@ func (self *LAND) Execute(frame *rtda.Frame){
 	v2 := stack.PopLong()
 	v1 := stack.PopLong()
 	result := v1 & v2
-	stack.PopLong(result)
+	stack.PushLong(result)
 }

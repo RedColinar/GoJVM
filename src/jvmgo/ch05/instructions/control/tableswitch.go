@@ -19,7 +19,7 @@ func (self *TABLE_SWITCH) FetchOperands(reader *base.BytecodeReader){
 	self.defaultOffset = reader.ReadInt32()
 	self.low = reader.ReadInt32()
 	self.high = reader.ReadInt32()
-	jumpOffsetsCount := self.high - self.slow + 1
+	jumpOffsetsCount := self.high - self.low + 1
 	self.jumpOffsets = reader.ReadInt32s(jumpOffsetsCount)
 }
 

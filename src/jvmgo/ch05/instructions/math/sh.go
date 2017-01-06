@@ -42,7 +42,7 @@ func (self *LSHL) Execute(frame *rtda.Frame){
 	v1 := stack.PopLong()
 	s := uint32(v2) & 0x3f
 	result := v1 << s
-	satck.PushLong(result)
+	stack.PushLong(result)
 }
 //只有无符号右移，go中没有java的>>>运算符，
 //需要先把v1转成无符号整数，位移操作之后，再转回有符号整数
@@ -60,6 +60,6 @@ func (self *LUSHR) Execute(frame *rtda.Frame){
 	v1 := stack.PopLong()
 	//0x3f是六个1
 	s := uint32(v2) & 0x3f
-	result := int32(uint32(v1) >> s)
+	result := int64(uint32(v1) >> s)
 	stack.PushLong(result)
 }

@@ -28,5 +28,5 @@ func (self *ISTORE_2) Execute(frame *rtda.Frame){
 	_istore(frame, 2)
 }   
 func (self *ISTORE_3) Execute(frame *rtda.Frame){
-	_istore(frame, 3`)
+	_istore(frame, 3)
 }   

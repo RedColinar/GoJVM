@@ -9,7 +9,7 @@ import "jvmgo/ch05/rtda"
 func interpret(methodInfo *classfile.MemberInfo){
 	codeAttr := methodInfo.CodeAttribute()
 	maxLocals := codeAttr.MaxLocals()
-	maxStack := codeAttr.maxStack()
+	maxStack := codeAttr.MaxStack()
 	bytecode := codeAttr.Code()
 
 	thread := rtda.NewThread()

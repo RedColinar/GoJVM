@@ -11,13 +11,13 @@ func (self *BIPUSH) FetchOperands(reader *base.BytecodeReader){
 }
 func (self *BIPUSH) Execute(frame *rtda.Frame){
 	i := int32(self.val)
-	frame.OperandsStack().PushInt(i)
+	frame.OperandStack().PushInt(i)
 }
 
-func (self *PIPUSH) FetchOperands(reader *base.BytecodeReader){
+func (self *SIPUSH) FetchOperands(reader *base.BytecodeReader){
 	self.val = reader.ReadInt16()
 }
-func (self *PIPUSH) Execute(frame *rtda.Frame){
+func (self *SIPUSH) Execute(frame *rtda.Frame){
 	i := int32(self.val)
-	frame.OperandsStack().PushInt(i)
+	frame.OperandStack().PushInt(i)
 }

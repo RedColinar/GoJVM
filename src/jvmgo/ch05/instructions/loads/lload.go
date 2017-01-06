@@ -13,15 +13,18 @@ func _lload(frame *rtda.Frame ,index uint){
 	val := frame.LocalVars().GetLong(index)
 	frame.OperandStack().PushLong(val)
 }
-func LLOAD_0(frame *rtda.Frame){
+func (self *LLOAD) Execute(frame  *rtda.Frame){
+	_lload(frame,uint(self.Index))
+}
+func (self *LLOAD_0) Execute(frame *rtda.Frame){
 	_lload(frame,0)
 }
-func LLOAD_1(frame *rtda.Frame){
+func (self *LLOAD_1) Execute(frame *rtda.Frame){
 	_lload(frame,1)
 }
-func LLOAD_2(frame *rtda.Frame){
+func (self  *LLOAD_2) Execute(frame *rtda.Frame){
 	_lload(frame,2)
 }
-func LLOAD_3(frame *rtda.Frame){
+func (self *LLOAD_3) Execute(frame *rtda.Frame){
 	_lload(frame,3)
 }

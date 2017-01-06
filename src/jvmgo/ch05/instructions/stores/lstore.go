@@ -28,5 +28,5 @@ func (self *LSTORE_2) Execute(frame *rtda.Frame){
 	_lstore(frame, 2)
 }   
 func (self *LSTORE_3) Execute(frame *rtda.Frame){
-	_lstore(frame, 3`)
+	_lstore(frame, 3)
 }   
