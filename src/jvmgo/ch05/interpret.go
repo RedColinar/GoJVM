@@ -22,8 +22,8 @@ func interpret(methodInfo *classfile.MemberInfo){
 
 func catchErr(frame *rtda.Frame){
 	if r := recover(); r != nil{
-		fmt.Println("LocalVars:%v\n",frame.LocalVars())
-		fmt.Println("OperandStack:%v\n",frame.OperandStack())
+		fmt.Printf("LocalVars:%v\n",frame.LocalVars())
+		fmt.Printf("OperandStack:%v\n",frame.OperandStack())
 		panic(r)
 	}
 }
@@ -41,7 +41,7 @@ func  loop(thread *rtda.Thread, bytecode []byte){
 		inst.FetchOperands(reader)
 		frame.SetNextPC(reader.PC())
 		//execute
-		fmt.Println("pc:%2d inst:%T %v\n",pc,inst,inst)
+		fmt.Printf("pc:%2d inst:%T %v\n",pc,inst,inst)
 		inst.Execute(frame)
 	}
 }
