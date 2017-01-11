@@ -29,6 +29,10 @@ func newClass(cf *classfile.ClassFile) *Class{
 	class.methods = newMethods(class,cf.Methods())
 	return class
 }
+
+func (self *Class) newObject() *Object{
+	return newObject(self)
+}
 //用来判断某个访问标志是否被设置
 func (self *Class) IsPublic() bool {
 	return 0 != self.accessFlags&ACC_PUBLIC
@@ -53,4 +57,15 @@ func (self *Class) IsAnnotation() bool {
 }
 func (self *Class) IsEnum() bool {
 	return 0 != self.accessFlags&ACC_ENUM
+}
+//判断是否有访问权限
+func (self *Class) isAccessibleTo(other *Class) bool{
+	return self.IsPublic() || self.getPackageName() == other.getPackageName()
+}
+//java/lang/Object返回包名java/lang
+func (self *Class) getPackageName() string{
+	if i := strings.LastIndex(self.name,"/"); i >= 0{
+		return self.name[:i]
+	}
+	return ""
 }

@@ -31,3 +31,40 @@ func (self *Method) copyAttributes(cfMethod *classfile.MemberInfo){
 		self.code = codeAttr.Code()
 	}
 }
+//getter
+func (self *Method) MaxStack() uint {
+	return self.maxStack
+}
+func (self *Method) MaxLocals() uint {
+	return self.maxLocals
+}
+func (self *Method) Code() []byte {
+	return self.code
+}
+
+
+//用来判断某个访问标志是否被设置
+func (self *Method) IsPublic() bool {
+	return 0 != self.accessFlags&ACC_PUBLIC
+}
+func (self *Method) IsFinal() bool {
+	return 0 != self.accessFlags&ACC_FINAL
+}
+func (self *Method) IsSuper() bool {
+	return 0 != self.accessFlags&ACC_SUPER
+}
+func (self *Method) IsInterface() bool {
+	return 0 != self.accessFlags&ACC_INTERFACE
+}
+func (self *Method) IsAbstract() bool {
+	return 0 != self.accessFlags&ACC_ABSTRACT
+}
+func (self *Method) IsSynthetic() bool {
+	return 0 != self.accessFlags&ACC_SYNTHETIC
+}
+func (self *Method) IsAnnotation() bool {
+	return 0 != self.accessFlags&ACC_ANNOTATION
+}
+func (self *Method) IsEnum() bool {
+	return 0 != self.accessFlags&ACC_ENUM
+}
