@@ -6,6 +6,7 @@ import "jvmgo/ch06/classfile"
 type Constant interface{}
 //运行时常量池
 type ConstantPool struct{
+	//常量池对应类的索引
 	class *Class
 	consts []Constant
 }
