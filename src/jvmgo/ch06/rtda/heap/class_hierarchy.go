@@ -4,6 +4,7 @@ func (self *Class) isAssignable(other *Class) bool {
 	if s == t {
 		return true
 	}
+	//如果t不是个接口，t可能是 s的子类，
 	if !t.IsInterface(){
 		return s.isSubClassOf(t)
 	}else {
