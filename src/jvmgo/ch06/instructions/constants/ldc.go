@@ -5,6 +5,7 @@ import "jvmgo/ch06/rtda"
 
 type LDC struct{ base.Index8Instruction }
 type LDC_W struct{ base.Index16Instruction }
+//用于加载long和double常量
 type LDC2_W struct{ base.Index16Instruction }
 
 func (self *LDC) Execute(frame *rtda.Frame){
