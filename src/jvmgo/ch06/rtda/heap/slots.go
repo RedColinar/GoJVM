@@ -1,6 +1,6 @@
-package rtda
+package heap
 
-import . "jvmgo/ch06/rtda/heap"
+import "math"
 //实现局部变量表的存储，和操作数栈的存储
 type Slot struct {
 	num int32
@@ -10,8 +10,8 @@ type Slot struct {
 type Slots []Slot
 
 func newSlots(slotCount uint) Slots {
-	if slotCount >0{
-		return make([]Slot,maxLocals)
+	if slotCount > 0 {
+		return make([]Slot,slotCount)
 	}
 	return nil
 }

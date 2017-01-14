@@ -45,7 +45,7 @@ func newConstantPool(class *Class,cfCp classfile.ConstantPool) *ConstantPool{
 				consts[i] = doubleInfo.Value()
 				i++
 			case *classfile.ConstantStringInfo:
-				stringInfo := cpInf.(*classfile.ConstantStringInfo)
+				stringInfo := cpInfo.(*classfile.ConstantStringInfo)
 				consts[i] = stringInfo.String()
 			//后4种为类，字段，方法，接口方法的符号引用
 			case *classfile.ConstantClassInfo:

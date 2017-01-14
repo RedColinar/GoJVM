@@ -11,6 +11,6 @@ func newClassRef(cp *ConstantPool,
 		classInfo *classfile.ConstantClassInfo) *ClassRef{
 	ref := &ClassRef{}
 	ref.cp = cp
-	ref.ClassName = classInfo.Name()
+	ref.className = classInfo.Name()
 	return ref
 }

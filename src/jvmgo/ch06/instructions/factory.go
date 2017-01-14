@@ -9,6 +9,7 @@ import . "jvmgo/ch06/instructions/conversions"
 import . "jvmgo/ch06/instructions/extended"
 import . "jvmgo/ch06/instructions/loads"
 import . "jvmgo/ch06/instructions/math"
+import . "jvmgo/ch06/instructions/references"
 import . "jvmgo/ch06/instructions/stack"
 import . "jvmgo/ch06/instructions/stores"
 

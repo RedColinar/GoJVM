@@ -8,7 +8,7 @@ type PUT_STATIC	struct{ base.Index16Instruction }
 
 func (self *PUT_STATIC) Execute(frame *rtda.Frame){
 	currentMethod := frame.Method()
-	currentClass := currentMethod().Class()
+	currentClass := currentMethod.Class()
 	cp := currentClass.ConstantPool()
 	//根据索引返回常量,
 	fieldRef := cp.GetConstant(self.Index).(*heap.FieldRef)

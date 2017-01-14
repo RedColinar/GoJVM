@@ -12,7 +12,7 @@ type ClassLoader struct{
 }
 
 func NewClassLoader(cp *classpath.Classpath) *ClassLoader{
-	return *ClassLoader{
+	return &ClassLoader{
 		cp:			cp,
 		classMap:	make(map[string]*Class),
 	}
@@ -28,7 +28,7 @@ func (self *ClassLoader) LoadClass(name string) *Class{
 	return self.loadNonArrayClass(name)
 }
 func (self *ClassLoader) loadNonArrayClass(name string) *Class{
-	data, entry := self.readClass(data)
+	data, entry := self.readClass(name)
 	class := self.defineClass(data)
 	link(class)
 	fmt.Printf("Loaded %s from %s",name,entry)
@@ -58,7 +58,7 @@ func parseClass(data []byte) *Class{
 	if err != nil{
 		panic("java.lang.ClassFormatError")
 	}
-	reutrn newClass(cf)
+	return newClass(cf)
 }
 	//除了java.lang.Object外，所有类都有且仅有一个超类
 	//因此，除非是Object类，否则需要递归调用LoadClass()加载超类
@@ -71,7 +71,7 @@ func resolveSuperClass (class *Class){
 func resolveInterfaces(class *Class){
 	interfaceCount := len(class.interfaceNames)
 	if interfaceCount > 0 {
-		class.interfaceCount = make([]*Class, interfaceCount)
+		class.interfaces = make([]*Class, interfaceCount)
 		for i, interfaceName := range class.interfaceNames{
 			class.interfaces[i] = class.loader.LoadClass(interfaceName)
 		}
@@ -94,7 +94,7 @@ func prepare(class *Class){
 func calcInstantceFieldSlotIds(class *Class){
 	slotId := uint(0)
 	if class.superClass != nil {
-		slotId := class.superClass.instanceSlotCount
+		slotId = class.superClass.instanceSlotCount
 	}
 	for _, field := range class.fields {
 		if !field.IsStatic(){
@@ -149,7 +149,7 @@ func initStaticFinalVar(class *Class, field *Field){
 			vars.SetFloat(slotId,val)
 		case "D":
 			val := cp.GetConstant(cpIndex).(float64)
-			vars.SetFloat(slotId,val)
+			vars.SetDouble(slotId,val)
 		case "Ljava/lang/String;":
 			panic("todo")
 		}

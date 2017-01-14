@@ -28,7 +28,7 @@ func _ldc(frame *rtda.Frame, index uint) {
 	}
 }
 //LDC2_W
-func (slef *LDC2_W)  Execute(frame *rtda.Frame){
+func (self *LDC2_W)  Execute(frame *rtda.Frame){
 	stack := frame.OperandStack()
 	cp := frame.Method().Class().ConstantPool()
 	c := cp.GetConstant(self.Index)

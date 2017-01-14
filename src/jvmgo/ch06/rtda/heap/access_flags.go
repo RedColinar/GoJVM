@@ -1,6 +1,6 @@
 package heap
 
-const {
+const (
 	ACC_PUBLIC			= 0x0001
 	ACC_PRIVATE  		= 0x0002
 	ACC_PROTECTED		= 0x0004
@@ -19,4 +19,4 @@ const {
 	ACC_SYNTHETIC		= 0x1000 
 	ACC_ANNOTATION		= 0x2000 
 	ACC_ENUM			= 0x4000	
-}
+)

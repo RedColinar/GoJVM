@@ -16,10 +16,10 @@ type Method struct{
 func newMethods(class *Class,cfMethods []*classfile.MemberInfo) []*Method{
 	methods := make([]*Method,len(cfMethods))
 	for i, cfMethod := range cfMethods{
-		method[i] = &Method{}
-		method[i].class = class
-		method[i].copyMemberInfo(cfMethod)
-		method[i].copyAttributes(cfMethod)
+		methods[i] = &Method{}
+		methods[i].class = class
+		methods[i].copyMemberInfo(cfMethod)
+		methods[i].copyAttributes(cfMethod)
 	}
 	return methods
 }

@@ -4,10 +4,10 @@ import "jvmgo/ch06/instructions/base"
 import "jvmgo/ch06/rtda"
 import "jvmgo/ch06/rtda/heap"
 
-type NEW struct{ base.Index16Instructions }
+type NEW struct{ base.Index16Instruction }
 
 func (self *NEW) Execute(frame *rtda.Frame){
-	cp := frame.Method().Class().ConstantPoool()
+	cp := frame.Method().Class().ConstantPool()
 	classRef := cp.GetConstant(self.Index).(*heap.ClassRef)
 	class := classRef.ResolvedClass()
 

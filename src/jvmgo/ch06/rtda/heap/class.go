@@ -1,5 +1,6 @@
 package heap
 
+import "strings"
 import "jvmgo/ch06/classfile"
 type Class struct{
 	//访问标志
@@ -15,7 +16,8 @@ type Class struct{
 	interfaces   		[]*Class 
 	instanceSlotCount	uint 
 	staticSlotCount		uint
-	staticVars			*Slots
+	//
+	staticVars			Slots
 }
 
 func newClass(cf *classfile.ClassFile) *Class{
@@ -81,4 +83,15 @@ func (self *Class) getStaticMethod(name,descriptor string) *Method {
 			}
 	}
 	return nil
+}
+// getters
+func (self *Class) ConstantPool() *ConstantPool {
+	return self.constantPool
+}
+func (self *Class) StaticVars() Slots {
+	return self.staticVars
+}
+
+func (self *Class) NewObject() *Object {
+	return newObject(self)
 }

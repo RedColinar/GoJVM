@@ -1,7 +1,7 @@
 package rtda
 
 import "math"
-import . "jvmgo/ch06/rtda/heap"
+import "jvmgo/ch06/rtda/heap"
 //操作数栈
 type OperandStack struct {
 	//size用于记录栈顶位置
@@ -60,11 +60,11 @@ func (self *OperandStack) PopDouble() float64{
 	return math.Float64frombits(bits)
 }
 
-func (self *OperandStack) PushRef(ref *Object) {
+func (self *OperandStack) PushRef(ref *heap.Object) {
 	self.slots[self.size].ref = ref
 	self.size++
 }
-func (self *OperandStack) PopRef() *Object{
+func (self *OperandStack) PopRef() *heap.Object{
 	self.size--
 	ref := self.slots[self.size].ref
 	self.slots[self.size].ref = nil

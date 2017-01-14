@@ -52,3 +52,10 @@ func (self *Field) IsAnnotation() bool {
 func (self *Field) IsEnum() bool {
 	return 0 != self.accessFlags&ACC_ENUM
 }
+//getter
+func (self *Field) SlotId() uint {
+	return self.slotId
+}
+func (self *Field) ConstValueIndex() uint {
+	return self.constValueIndex
+}

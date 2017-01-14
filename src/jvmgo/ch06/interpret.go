@@ -1,15 +1,14 @@
 package main
 
 import "fmt"
-import "jvmgo/ch06/classfile"
 import "jvmgo/ch06/instructions"
 import "jvmgo/ch06/instructions/base"
 import "jvmgo/ch06/rtda"
-import "jvmgp/ch06/rtda/heap"
+import "jvmgo/ch06/rtda/heap"
 //解释器
 func interpret(method *heap.Method){
 	thread := rtda.NewThread()
-	frame := thread.NewFrame(maxLocals,maxStack)
+	frame := thread.NewFrame(method)
 	thread.PushFrame(frame)
 
 	defer catchErr(frame)
@@ -18,9 +17,9 @@ func interpret(method *heap.Method){
 
 func catchErr(frame *rtda.Frame){
 	if r := recover(); r != nil{
-		fmt.Printf("LocalVars:%v\n",frame.LocalVars())
-		fmt.Printf("OperandStack:%v\n",frame.OperandStack())
-		panic(r)
+		//fmt.Printf("LocalVars:%v\n",frame.LocalVars())
+		//fmt.Printf("OperandStack:%v\n",frame.OperandStack())
+		//panic(r)
 	}
 }
 //loop()函数循环执行“计算pc，解码指令  ，执行指令”

@@ -8,7 +8,7 @@ type PUT_FIELD struct { base.Index16Instruction }
 
 func (self *PUT_FIELD) Execute(frame *rtda.Frame){
 	currentMethod := frame.Method()
-	currentClass := currentMethod().Class()
+	currentClass := currentMethod.Class()
 	cp := currentClass.ConstantPool()
 	//根据索引返回常量,
 	fieldRef := cp.GetConstant(self.Index).(*heap.FieldRef)
@@ -26,7 +26,7 @@ func (self *PUT_FIELD) Execute(frame *rtda.Frame){
 
 	descriptor := field.Descriptor()
 	slotId  := field.SlotId()
-	stack := field.OperandStack()
+	stack := frame.OperandStack()
 
 	switch descriptor[0] {
 	case 'Z','B','C','S','I':

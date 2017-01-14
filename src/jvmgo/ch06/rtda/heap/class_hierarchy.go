@@ -1,5 +1,6 @@
+package heap
 //判断是否为实例的逻辑
-func (self *Class) isAssignable(other *Class) bool {
+func (self *Class) isAssignableFrom(other *Class) bool {
 	s, t := other, self
 	if s == t {
 		return true
