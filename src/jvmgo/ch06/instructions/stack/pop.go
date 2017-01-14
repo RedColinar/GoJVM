@@ -1,6 +1,6 @@
 package stack
-import "jvmgo/ch05/instructions/base"
-import "jvmgo/ch05/rtda"
+import "jvmgo/ch06/instructions/base"
+import "jvmgo/ch06/rtda"
 
 type POP struct { base.NoOperandsInstruction }
 type POP2 struct { base.NoOperandsInstruction }

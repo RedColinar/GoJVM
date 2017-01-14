@@ -1,7 +1,7 @@
 package control
 
-import "jvmgo/ch05/instructions/base"
-import "jvmgo/ch05/rtda"
+import "jvmgo/ch06/instructions/base"
+import "jvmgo/ch06/rtda"
 
 type TABLE_SWITCH struct{
 	//默认情况下执行跳转所需的字节码偏移量

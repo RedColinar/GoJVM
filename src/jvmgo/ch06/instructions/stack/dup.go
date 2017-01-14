@@ -1,7 +1,7 @@
 package stack
 
-import "jvmgo/ch05/instructions/base"
-import "jvmgo/ch05/rtda"
+import "jvmgo/ch06/instructions/base"
+import "jvmgo/ch06/rtda"
 
 type DUP struct{ base.NoOperandsInstruction }
 type DUP_X1 struct { base.NoOperandsInstruction }

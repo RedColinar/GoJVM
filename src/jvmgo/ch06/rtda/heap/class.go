@@ -69,7 +69,7 @@ func (self *Class) getPackageName() string{
 	}
 	return ""
 }
-//
+//加载主类
 func (self *Class) GetMainMethod() *Method {
 	return self.getStaticMethod("main", "([Ljava/lang/String;)V")
 }

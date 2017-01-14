@@ -1,7 +1,7 @@
 package loads
 
-import "jvmgo/ch05/instructions/base"
-import "jvmgo/ch05/rtda"
+import "jvmgo/ch06/instructions/base"
+import "jvmgo/ch06/rtda"
 
 //加载指令从局部变量表获取变量，然后推入操作数栈顶
 type ILOAD struct { base.Index8Instruction }

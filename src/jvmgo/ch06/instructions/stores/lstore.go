@@ -1,7 +1,7 @@
 package stores
 
-import "jvmgo/ch05/instructions/base"
-import "jvmgo/ch05/rtda"
+import "jvmgo/ch06/instructions/base"
+import "jvmgo/ch06/rtda"
 
 //存储指令把变量从操作数栈顶弹出，然后存入局部变量表
 type LSTORE struct { base.Index8Instruction}
