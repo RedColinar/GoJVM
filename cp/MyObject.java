@@ -1,4 +1,4 @@
-package cp
+package cp;
 
 public class MyObject {
 	public static int staticVar;

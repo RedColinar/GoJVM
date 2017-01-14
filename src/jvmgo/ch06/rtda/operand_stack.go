@@ -73,6 +73,8 @@ func (self *OperandStack) PopRef() *heap.Object{
 
 func (self *OperandStack) PushSlot(slot Slot){
 	self.slots[self.size] = slot
+	//写的时候漏了这个
+	self.size++
 }
 func (self *OperandStack) PopSlot() Slot{
 	self.size--

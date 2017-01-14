@@ -6,7 +6,7 @@ import "jvmgo/ch06/rtda/heap"
 type LocalVars []Slot
 
 func newLocalVars(maxLocals uint) LocalVars {
-	if maxLocals >0{
+	if maxLocals > 0 {
 		return make([]Slot,maxLocals)
 	}
 	return nil

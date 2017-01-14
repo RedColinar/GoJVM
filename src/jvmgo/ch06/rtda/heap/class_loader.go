@@ -31,7 +31,7 @@ func (self *ClassLoader) loadNonArrayClass(name string) *Class{
 	data, entry := self.readClass(name)
 	class := self.defineClass(data)
 	link(class)
-	fmt.Printf("Loaded %s from %s",name,entry)
+	fmt.Printf("[Loaded %s from %s]\n",name,entry)
 	return class
 }
 //根据文件名找到class文件，，返回文件字节码，和类路径接口
@@ -119,6 +119,7 @@ func calcStaticFieldSlotIds(class *Class){
 			}
 		}
 	}
+	class.staticSlotCount = slotId
 }
 //给类变量分配空间，然后给他们赋予初始值
 func allocAndInitStaticVars(class *Class){
