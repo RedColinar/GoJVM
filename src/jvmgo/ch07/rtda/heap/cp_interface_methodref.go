@@ -40,6 +40,7 @@ func (self *InterfaceMethodRef) resolveInterfaceMethodRef() {
 	}
 	self.method =  method
 }
+//判断是否为相同的方法1.name 2.方法描述符
 func lookupInterfaceMethod(iface *Class, name, descriptor string)  *Method {
 	for _,  method :=  range iface.methods {
 		if method.name == name && method.descriptor == descriptor {
