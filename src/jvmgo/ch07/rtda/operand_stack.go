@@ -80,3 +80,7 @@ func (self *OperandStack) PopSlot() Slot{
 	self.size--
 	return self.slots[self.size]
 }
+//不改变操作数栈的状态下，返回引用
+func (self *OperandStack) GetRefFromTop(n uint) *heap.Object {
+	return self.slots[self.size -1 -n].ref
+}
