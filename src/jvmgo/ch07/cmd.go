@@ -6,7 +6,11 @@ import "os"
 //结构体Cmd
 type Cmd struct {
 	helpFlag 	bool
-	versionFlag	bool 
+	versionFlag	bool
+	//类加载信息输出到控制台
+	verboseClassFlag	bool
+	//指令执行信息输出到控制出台
+	verboseInstFlag		bool 
 	cpOption	string
 	//用来指定jre目录位置
 	XjreOption 	string
@@ -24,6 +28,10 @@ func parseCmd() *Cmd{
 	flag.BoolVar(&cmd.helpFlag,"help",false,"print help message")
 	flag.BoolVar(&cmd.helpFlag,"?",false,"print version message")
 	flag.BoolVar(&cmd.versionFlag,"version",false,"print version and exit")
+	
+	flag.BoolVar(&cmd.verboseClassFlag, "verbose", false, "enable verbose output")
+	flag.BoolVar(&cmd.verboseClassFlag, "verbose:class", false, "enable verbose output")
+	flag.BoolVar(&cmd.verboseInstFlag, "verbose:inst", false, "enable verbose output")
 	//cpOption有两个默认值，cp和classpath
 	flag.StringVar(&cmd.cpOption,"classpath","","classpath")
 	flag.StringVar(&cmd.cpOption,"cp","","classpath")

@@ -15,6 +15,7 @@ func (self *GET_STATIC) Execute(frame *rtda.Frame){
 	if !field.IsStatic(){
 		panic("java.lang.IncompatibleClassError")
 	}
+
 	descriptor := field.Descriptor()
 	slotId := field.SlotId()
 	slots := class.StaticVars()

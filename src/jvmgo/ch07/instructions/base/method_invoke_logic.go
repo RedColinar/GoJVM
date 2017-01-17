@@ -1,5 +1,8 @@
 package base
 
+import "jvmgo/ch07/rtda"
+import "jvmgo/ch07/rtda/heap"
+
 func InvokeMethod(invokerFrame  *rtda.Frame, method *heap.Method){
 	thread := invokerFrame.Thread()
 	newFrame := thread.NewFrame(method)

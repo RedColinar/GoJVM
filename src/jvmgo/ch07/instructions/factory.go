@@ -158,11 +158,11 @@ var (
 	dreturn = &DRETURN{}
 	areturn = &ARETURN{}
 	_return = &RETURN{}
-	/*arraylength   = &ARRAY_LENGTH{}
-	athrow        = &ATHROW{}
-	monitorenter  = &MONITOR_ENTER{}
-	monitorexit   = &MONITOR_EXIT{}
-	invoke_native = &INVOKE_NATIVE{}*/
+	// arraylength   = &ARRAY_LENGTH{}
+	// athrow        = &ATHROW{}
+	// monitorenter  = &MONITOR_ENTER{}
+	// monitorexit   = &MONITOR_EXIT{}
+	// invoke_native = &INVOKE_NATIVE{}
 )
 
 func NewInstruction(opcode byte) base.Instruction {

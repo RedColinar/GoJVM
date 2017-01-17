@@ -2,6 +2,7 @@ package references
 
 import "jvmgo/ch07/instructions/base"
 import "jvmgo/ch07/rtda"
+import "jvmgo/ch07/rtda/heap"
 
 type INVOKE_SPECIAL struct{ base.Index16Instruction }
 //调用初始化方法，特殊处理父类的，私有的，和实例初始方法调用

@@ -20,10 +20,14 @@ func (self *Thread) PushFrame(frame *Frame){
 func (self *Thread) PopFrame() *Frame{
 	return self.stack.pop()
 }
-//返回当前帧
+//两个返回当前帧的方法
 func (self *Thread) CurrentFrame() *Frame{
 	return self.stack.top()
 }
+func (self *Thread) TopFrame() *Frame{
+	return self.stack.top()
+}
+
 func (self *Thread) NewFrame(method *heap.Method) *Frame{
 	return newFrame(self,method)
 }

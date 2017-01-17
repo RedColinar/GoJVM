@@ -20,11 +20,6 @@ func (self *InterfaceMethodRef) ResolvedInterfaceMethod() *Method {
 	return self.method
 }
 //接口方法符号引用
-func (self *InterfaceMethodRef) ResolvedInterfaceMethod() *Method {
-	if self.method == nil {
-		self.resolveInterfaceMethodRef()
-	}
-}
 func (self *InterfaceMethodRef) resolveInterfaceMethodRef() {
 	d :=  self.cp.class
 	c := self.ResolvedClass()
@@ -47,5 +42,5 @@ func lookupInterfaceMethod(iface *Class, name, descriptor string)  *Method {
 			return method
 		}
 	}
-	return lookupMethodInInterfaces(iface.interface, name, descriptor)
+	return lookupMethodInInterfaces(iface.interfaces, name, descriptor)
 }

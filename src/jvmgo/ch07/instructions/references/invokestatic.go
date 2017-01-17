@@ -1,8 +1,8 @@
-package refereneces
+package references
 
 import "jvmgo/ch07/instructions/base"
 import "jvmgo/ch07/rtda"
-import "jvmgo/ch07/rtda/class"
+import "jvmgo/ch07/rtda/heap"
 
 type INVOKE_STATIC struct{ base.Index16Instruction }
 
