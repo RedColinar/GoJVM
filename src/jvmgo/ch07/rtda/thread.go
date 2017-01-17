@@ -27,3 +27,7 @@ func (self *Thread) CurrentFrame() *Frame{
 func (self *Thread) NewFrame(method *heap.Method) *Frame{
 	return newFrame(self,method)
 }
+//判断虚拟机栈中是否还有帧
+func (self *Thread) IsStackEmpty() bool{
+	return self.stack.isEmpty()
+}
