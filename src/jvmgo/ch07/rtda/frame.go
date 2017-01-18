@@ -40,3 +40,7 @@ func (self *Frame) NextPC() int{
 func (self *Frame) SetNextPC(nextPC int){
 	self.nextPC = nextPC
 }
+//重置指令
+func (self *Frame) RevertNextPC(){
+	self.nextPC = self.thread.pc
+}
