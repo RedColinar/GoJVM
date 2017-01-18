@@ -27,8 +27,12 @@ func (self *ClassLoader) LoadClass(name string) *Class{
 	}
 	//数组类和普通类有很大的不同，它的数据并不是来自class文件，
 	//而是由java虚拟机在运行期间生成
+	if name[0] == '['{
+		return self.loadArrayClass(name)
+	}
 	return self.loadNonArrayClass(name)
 }
+//加载非数组类
 func (self *ClassLoader) loadNonArrayClass(name string) *Class{
 	data, entry := self.readClass(name)
 	class := self.defineClass(data)
@@ -36,6 +40,24 @@ func (self *ClassLoader) loadNonArrayClass(name string) *Class{
 	if self.verboseFlag {
 		fmt.Printf("[Loaded %s from %s]\n",name,entry)
 	}
+	return class
+}
+//加载数组类
+func (self *ClassLoader) loadArrayClass(name string) *Class{
+	class := &Class{
+		accessFlags: 		ACC_PUBLIC,
+		name:				name,
+		loader:				self,
+		//数组类不需要初始化，所以把initStarted设置为true
+		initStarted:		true,
+		//数组类超类是Object，实现的接口有两个
+		superClass:			self.LoadClass("java/lang/Object"),
+		initerfaces:		[]*Class{
+			self.LoadClass("java/lang/Cloneable"),
+			self.LoadClass("java/io/Serializable"),
+		},
+	}
+	self.classMap[name] = class
 	return class
 }
 //根据文件名找到class文件，，返回文件字节码，和类路径接口

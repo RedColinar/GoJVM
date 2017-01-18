@@ -2,12 +2,12 @@ package heap
 
 type Object struct {
 	class 	*Class
-	fields	Slots
+	data	interface{}
 } 
 func newObject(class *Class) *Object {
 	return &Object{
 		class:		class,
-		fields:		newSlots(class.instanceSlotCount),
+		data:		newSlots(class.instanceSlotCount),
 	}
 }
 //实际逻辑在Class结构体中的isAssignableFrom()方法
@@ -19,5 +19,5 @@ func (self *Object) Class() *Class {
 	return self.class
 }
 func (self *Object) Fields() Slots {
-	return self.fields
+	return self.data.(Slots)
 }
