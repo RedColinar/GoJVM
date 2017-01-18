@@ -32,7 +32,7 @@ func newClass(cf *classfile.ClassFile) *Class{
 	return class
 }
 
-func (self *Class) newObject() *Object{
+func (self *Class) NewObject() *Object{
 	return newObject(self)
 }
 //用来判断某个访问标志是否被设置
@@ -62,10 +62,10 @@ func (self *Class) IsEnum() bool {
 }
 //判断是否有访问权限
 func (self *Class) isAccessibleTo(other *Class) bool{
-	return self.IsPublic() || self.getPackageName() == other.getPackageName()
+	return self.IsPublic() || self.GetPackageName() == other.GetPackageName()
 }
 //java/lang/Object返回包名java/lang
-func (self *Class) getPackageName() string{
+func (self *Class) GetPackageName() string{
 	if i := strings.LastIndex(self.name,"/"); i >= 0{
 		return self.name[:i]
 	}
@@ -85,13 +85,21 @@ func (self *Class) getStaticMethod(name,descriptor string) *Method {
 	return nil
 }
 // getters
+func (self *Class) Name() string {
+	return self.name
+}
 func (self *Class) ConstantPool() *ConstantPool {
 	return self.constantPool
 }
+func (self *Class) Fields() []*Field {
+	return self.fields
+}
+func (self *Class) Methods() []*Method {
+	return self.methods
+}
+func (self *Class) SuperClass() *Class {
+	return self.superClass
+}
 func (self *Class) StaticVars() Slots {
 	return self.staticVars
-}
-
-func (self *Class) NewObject() *Object {
-	return newObject(self)
 }

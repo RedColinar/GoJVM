@@ -48,6 +48,6 @@ func  (self *INVOKE_SPECIAL) Execute(frame *rtda.Frame){
 	if methodToBeInvoked == nil || methodToBeInvoked.IsAbstract() {
 		panic("java.lang.AbstractMethodError")
 	}
-	base.InvokeMethod(farme, methodToBeInvoked)
+	base.InvokeMethod(frame, methodToBeInvoked)
 }
 

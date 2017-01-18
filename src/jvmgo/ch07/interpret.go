@@ -12,11 +12,11 @@ func interpret(method *heap.Method, logInst bool){
 	frame := thread.NewFrame(method)
 	thread.PushFrame(frame)
 
-	defer catchErr(frame)
+	defer catchErr(thread)
 	loop(thread, logInst)
 }
 
-func catchErr(frame *rtda.Frame){
+func catchErr(thread *rtda.Thread){
 	if r := recover(); r != nil{
 		logFrames(thread)
 		panic(r)
@@ -39,7 +39,7 @@ func  loop(thread *rtda.Thread, logInst bool){
 		pc :=  frame.NextPC()
 		thread.SetPC(pc)
 		//decode
-		reader.Reset(frame.Method().C ode(),pc)
+		reader.Reset(frame.Method().Code(),pc)
 		opcode := reader.ReadUint8()
 		inst := instructions.NewInstruction(opcode)
 		inst.FetchOperands(reader)

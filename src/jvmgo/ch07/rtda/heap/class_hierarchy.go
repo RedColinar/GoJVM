@@ -43,3 +43,7 @@ func (self *Class) IsSubInterfaceOf(iface *Class) bool {
 	}
 	return false
 }
+// c extends self
+func (self *Class) IsSuperClassOf(other *Class) bool {
+	return other.IsSubClassOf(self)
+}
