@@ -50,7 +50,7 @@ func (self *ClassLoader) loadArrayClass(name string) *Class{
 		loader:				self,
 		//数组类不需要初始化，所以把initStarted设置为true
 		initStarted:		true,
-		//数组类超类是Object，实现的接口有两个
+		//数组类超类是Object，实现的接口有两个 
 		superClass:			self.LoadClass("java/lang/Object"),
 		initerfaces:		[]*Class{
 			self.LoadClass("java/lang/Cloneable"),

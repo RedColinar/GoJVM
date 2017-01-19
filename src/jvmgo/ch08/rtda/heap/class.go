@@ -36,6 +36,10 @@ func newClass(cf *classfile.ClassFile) *Class{
 func (self *Class) NewObject() *Object{
 	return newObject(self)
 }
+func (self *Class) ArrayClass() *Class{
+	arrayClassName := getArrayClassName(self.name)
+	return self.loader.LoadClass(arrayClassName)
+}
 //用来判断某个访问标志是否被设置
 func (self *Class) IsPublic() bool {
 	return 0 != self.accessFlags&ACC_PUBLIC

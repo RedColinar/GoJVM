@@ -26,7 +26,7 @@ func (self *Object) Doubles() []float64 {
 func (self *Object) Refs() []*Object {
 	return self.data.([]*Object)
 }
-//同样没有boolean
+//同样没有boolean,返回数组长度
 func (self *Object) ArrayLength() int32{
 	switch self.fields.(type){
 		case []int8: return int32(len(self.data.([]int8)))
