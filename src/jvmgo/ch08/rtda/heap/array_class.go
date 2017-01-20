@@ -19,3 +19,8 @@ func (self *Class) NewArray(count uint) *Object{
 func (self *Class) IsArray() bool {
 	return self.name[0] == '['
 }
+//返回数组类的元素类型
+func (self *Class) ComponentClass() *Class{
+	componentClassName := getComponentClassName(self.name)
+	return self.loader.LoadClass(componentClassName)
+}
