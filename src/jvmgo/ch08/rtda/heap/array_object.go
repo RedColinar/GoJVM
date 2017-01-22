@@ -12,7 +12,7 @@ func (self *Object) Chars() []uint16 {
 	return self.data.([]uint16)
 }
 func (self *Object) Ints() []int32 {
-	return self.data.([]int8)
+	return self.data.([]int32)
 }
 func (self *Object) Longs() []int64 {
 	return self.data.([]int64)
@@ -28,7 +28,8 @@ func (self *Object) Refs() []*Object {
 }
 //同样没有boolean,返回数组长度
 func (self *Object) ArrayLength() int32{
-	switch self.fields.(type){
+	//进行类型断言的必须是interface{}
+	switch self.data.(type){
 		case []int8: return int32(len(self.data.([]int8)))
 		case []int16: return int32(len(self.data.([]int16)))
 		case []uint16: return int32(len(self.data.([]uint16)))

@@ -52,7 +52,7 @@ func (self *ClassLoader) loadArrayClass(name string) *Class{
 		initStarted:		true,
 		//数组类超类是Object，实现的接口有两个 
 		superClass:			self.LoadClass("java/lang/Object"),
-		initerfaces:		[]*Class{
+		interfaces:			[]*Class{
 			self.LoadClass("java/lang/Cloneable"),
 			self.LoadClass("java/io/Serializable"),
 		},

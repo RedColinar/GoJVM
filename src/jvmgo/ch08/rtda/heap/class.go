@@ -105,6 +105,9 @@ func (self *Class) Fields() []*Field {
 func (self *Class) Methods() []*Method {
 	return self.methods
 }
+func (self *Class) Loader() *ClassLoader {
+	return self.loader
+}
 func (self *Class) SuperClass() *Class {
 	return self.superClass
 }

@@ -1,10 +1,9 @@
 package references
 
 import "jvmgo/ch08/instructions/base"
-import "jvmgo/vh08/rtda"
-import "jvmgo/vh08/rtda/heap"
+import "jvmgo/ch08/rtda"
 
-type ARRAY_LENGTH struct{ base.NoOperandInstruction }
+type ARRAY_LENGTH struct{ base.NoOperandsInstruction }
 //arraylength指令只需要一个操作数，即数组引用
 func (self *ARRAY_LENGTH) Execute(frame *rtda.Frame){
 	stack := frame.OperandStack()

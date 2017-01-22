@@ -22,7 +22,7 @@ func (self *AALOAD) Execute(frame *rtda.Frame) {
 
 	checkNotNil(arrRef)
 	refs := arrRef.Refs()
-	checkIndx(len(refs),index)
+	checkIndex(len(refs),index)
 	stack.PushRef(refs[index])
 }
 func (self *BALOAD) Execute(frame *rtda.Frame) {
@@ -46,7 +46,7 @@ func (self *CALOAD) Execute(frame *rtda.Frame) {
 
 	checkNotNil(arrRef)
 	chars := arrRef.Chars()
-	checkIndx(len(chars),index)
+	checkIndex(len(chars),index)
 	stack.PushInt(int32(chars[index]))
 }
 func (self *DALOAD) Execute(frame *rtda.Frame) {
@@ -58,8 +58,8 @@ func (self *DALOAD) Execute(frame *rtda.Frame) {
 
 	checkNotNil(arrRef)
 	doubles := arrRef.Doubles()
-	checkIndx(len(doubles),index)
-	stack.PushDouble(refs[index])
+	checkIndex(len(doubles),index)
+	stack.PushDouble(doubles[index])
 }
 func (self *FALOAD) Execute(frame *rtda.Frame) {
 	stack := frame.OperandStack()
@@ -70,7 +70,7 @@ func (self *FALOAD) Execute(frame *rtda.Frame) {
 
 	checkNotNil(arrRef)
 	floats := arrRef.Floats()
-	checkIndx(len(floats),index)
+	checkIndex(len(floats),index)
 	stack.PushFloat(floats[index])
 }
 func (self *IALOAD) Execute(frame *rtda.Frame) {
@@ -82,7 +82,7 @@ func (self *IALOAD) Execute(frame *rtda.Frame) {
 	checkNotNil(arrRef)
 
 	ints := arrRef.Ints()
-	checkIndx(len(ints),index)
+	checkIndex(len(ints),index)
 	stack.PushInt(ints[index])
 }
 func (self *LALOAD) Execute(frame *rtda.Frame) {
@@ -93,7 +93,7 @@ func (self *LALOAD) Execute(frame *rtda.Frame) {
 	arrRef := stack.PopRef()
 	checkNotNil(arrRef)
 	longs := arrRef.Longs()
-	checkIndx(len(longs),index)
+	checkIndex(len(longs),index)
 	stack.PushLong(longs[index])
 }
 func (self *SALOAD) Execute(frame *rtda.Frame) {
@@ -104,7 +104,7 @@ func (self *SALOAD) Execute(frame *rtda.Frame) {
 	arrRef := stack.PopRef()
 	checkNotNil(arrRef)
 	shorts := arrRef.Shorts()
-	checkIndx(len(shorts),index)
+	checkIndex(len(shorts),index)
 	stack.PushInt(int32(shorts[index]))
 }
 

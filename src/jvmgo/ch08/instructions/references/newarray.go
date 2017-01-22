@@ -31,6 +31,7 @@ func (self *NEW_ARRAY) Execute(frame *rtda.Frame){
 	}
 	classLoader := frame.Method().Class().Loader()
 	arrClass := getPrimitiveArrayClass(classLoader, self.atype)
+	arr := arrClass.NewArray(uint(count))
 	stack.PushRef(arr)
 }
 func getPrimitiveArrayClass(loader *heap.ClassLoader, atype uint8) *heap.Class{

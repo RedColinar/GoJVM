@@ -26,14 +26,14 @@ func (self *IASTORE) Execute(frame *rtda.Frame){
 }
 func (self *AASTORE) Execute(frame *rtda.Frame){
 	stack := frame.OperandStack()
-	val := stack.PopRef()
+	ref := stack.PopRef()
 	index := stack.PopInt()
 	arrRef := stack.PopRef()
 
 	checkNotNil(arrRef)
 	refs := arrRef.Refs()
 	checkIndex(len(refs), index)
-	refs[index] = int32(val)
+	refs[index] = ref
 }
 func (self *BASTORE) Execute(frame *rtda.Frame){
 	stack := frame.OperandStack()
@@ -47,7 +47,7 @@ func (self *BASTORE) Execute(frame *rtda.Frame){
 	bytes[index] = int8(val)
 }
 func (self *CASTORE) Execute(frame *rtda.Frame){
-	stack := frame.OperandSatck()
+	stack := frame.OperandStack()
 	val := stack.PopInt()
 	index := stack.PopInt()
 	arrRef := stack.PopRef()
@@ -111,4 +111,4 @@ func checkIndex(arrLen int, index int32) {
 	if index < 0 || index >= int32(arrLen) {
 		panic("ArrayIndexOutOfBoundsException")
 	}
-}
+}                 

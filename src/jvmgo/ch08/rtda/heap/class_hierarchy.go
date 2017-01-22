@@ -74,5 +74,5 @@ func (self *Class) IsSuperClassOf(other *Class) bool {
 }
 // iface extends self
 func (self *Class) isSuperInterfaceOf(iface *Class) bool {
-	return iface.isSubInterfaceOf(self)
+	return iface.IsSubInterfaceOf(self)
 }

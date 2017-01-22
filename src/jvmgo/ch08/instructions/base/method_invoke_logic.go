@@ -1,5 +1,6 @@
 package base
 
+import "fmt"
 import "jvmgo/ch08/rtda"
 import "jvmgo/ch08/rtda/heap"
 

@@ -10,6 +10,10 @@ type MULTI_ANEW_ARRAY struct{
 	//表示数组维度
 	dimensions	uint8
 }
+func (self *MULTI_ANEW_ARRAY) FetchOperands(reader *base.BytecodeReader) {
+	self.index = reader.ReadUint16()
+	self.dimensions = reader.ReadUint8()
+}
 func (self *MULTI_ANEW_ARRAY) Execute(frame *rtda.Frame){
 	cp := frame.Method().Class().ConstantPool()
 	classRef := cp.GetConstant(uint(self.index)).(*heap.ClassRef)
@@ -32,14 +36,14 @@ func popAndCheckCounts(stack *rtda.OperandStack, dimensions int)  []int32{
 	}
 	return counts
 }
-func newMultiDimensionalArray(count []int32, arrClass *heap.Class) *heap.Object{
+func newMultiDimensionalArray(counts []int32, arrClass *heap.Class) *heap.Object{
 	count := uint(counts[0])
 	arr := arrClass.NewArray(count)
 
 	if len(counts) > 1{
 		refs := arr.Refs()
 		for i := range refs{
-			refs[i] = newMultiDimensionalArray(count[1:], arrClass.ComponentClass())
+			refs[i] = newMultiDimensionalArray(counts[1:], arrClass.ComponentClass())
 		}
 	}
 	return arr

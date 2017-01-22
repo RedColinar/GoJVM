@@ -9,7 +9,7 @@ type ANEW_ARRAY struct{
 }
 func (self *ANEW_ARRAY) Execute(frame *rtda.Frame){
 	cp := frame.Method().Class().ConstantPool()
-	classRef := cp.getConstant(self.Index).(*heap.ClassRef)
+	classRef := cp.GetConstant(self.Index).(*heap.ClassRef)
 	componentClass := classRef.ResolvedClass()
 
 	stack := frame.OperandStack()

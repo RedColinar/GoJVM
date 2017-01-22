@@ -60,29 +60,22 @@ func (self *Method) ArgSlotCount() uint {
 	return self.argSlotCount
 }
 
-
-//用来判断某个访问标志是否被设置
-func (self *Method) IsPublic() bool {
-	return 0 != self.accessFlags&ACC_PUBLIC
+//方法的关键字
+func (self *Method) IsSynchronized() bool {
+	return 0 != self.accessFlags&ACC_SYNCHRONIZED
 }
-func (self *Method) IsFinal() bool {
-	return 0 != self.accessFlags&ACC_FINAL
+func (self *Method) IsBridge() bool {
+	return 0 != self.accessFlags&ACC_BRIDGE
 }
-func (self *Method) IsSuper() bool {
-	return 0 != self.accessFlags&ACC_SUPER
+func (self *Method) IsVarargs() bool {
+	return 0 != self.accessFlags&ACC_VARARGS
 }
-func (self *Method) IsInterface() bool {
-	return 0 != self.accessFlags&ACC_INTERFACE
+func (self *Method) IsNative() bool {
+	return 0 != self.accessFlags&ACC_NATIVE
 }
 func (self *Method) IsAbstract() bool {
 	return 0 != self.accessFlags&ACC_ABSTRACT
 }
-func (self *Method) IsSynthetic() bool {
-	return 0 != self.accessFlags&ACC_SYNTHETIC
-}
-func (self *Method) IsAnnotation() bool {
-	return 0 != self.accessFlags&ACC_ANNOTATION
-}
-func (self *Method) IsEnum() bool {
-	return 0 != self.accessFlags&ACC_ENUM
+func (self *Method) IsStrict() bool {
+	return 0 != self.accessFlags&ACC_STRICT
 }

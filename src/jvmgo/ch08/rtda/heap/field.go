@@ -28,26 +28,11 @@ func (self *Field) copyAttributes(cfField *classfile.MemberInfo){
 	}
 }
 //用来判断某个访问标志是否被设置
-func (self *Field) IsPublic() bool {
-	return 0 != self.accessFlags&ACC_PUBLIC
+func (self *Field) IsVolatile() bool {
+	return 0 != self.accessFlags&ACC_VOLATILE
 }
-func (self *Field) IsFinal() bool {
-	return 0 != self.accessFlags&ACC_FINAL
-}
-func (self *Field) IsSuper() bool {
-	return 0 != self.accessFlags&ACC_SUPER
-}
-func (self *Field) IsInterface() bool {
-	return 0 != self.accessFlags&ACC_INTERFACE
-}
-func (self *Field) IsAbstract() bool {
-	return 0 != self.accessFlags&ACC_ABSTRACT
-}
-func (self *Field) IsSynthetic() bool {
-	return 0 != self.accessFlags&ACC_SYNTHETIC
-}
-func (self *Field) IsAnnotation() bool {
-	return 0 != self.accessFlags&ACC_ANNOTATION
+func (self *Field) IsTransient() bool {
+	return 0 != self.accessFlags&ACC_TRANSIENT
 }
 func (self *Field) IsEnum() bool {
 	return 0 != self.accessFlags&ACC_ENUM
