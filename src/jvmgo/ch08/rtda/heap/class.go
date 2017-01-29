@@ -92,6 +92,16 @@ func (self *Class) getStaticMethod(name,descriptor string) *Method {
 func (self *Class) GetClinitMethod() *Method {
 	return self.getStaticMethod("<clinit>", "()V")
 }
+func (self *Class) getField(name, descriptor string, isStatic bool) *Field{
+	for c := self; c != nil; c = c.superClass {
+		for _, field := range c.fields{
+			if field.IsStatic() == isStatic &&
+				field.name == name && field.descriptor == descriptor{
+					return field
+			}
+		}
+	}
+} 
 // getters
 func (self *Class) Name() string {
 	return self.name
