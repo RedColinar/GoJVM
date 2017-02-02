@@ -4,21 +4,21 @@ import "strings"
 import "jvmgo/ch08/classfile"
 type Class struct{
 	//访问标志
-	accessFlags			uint16
-	name				string
+	accessFlags		uint16
+	name			string
 	superClassName		string
 	interfaceNames		[]string
 	constantPool		*ConstantPool
-	fields				[]*Field
-	methods				[]*Method
-	loader				*ClassLoader
-	superClass 			*Class
+	fields			[]*Field
+	methods			[]*Method
+	loader			*ClassLoader
+	superClass 		*Class
 	interfaces   		[]*Class 
 	instanceSlotCount	uint 
 	staticSlotCount		uint
 	//
-	staticVars			Slots
-	initStarted			bool
+	staticVars		Slots
+	initStarted		bool
 }
 
 func newClass(cf *classfile.ClassFile) *Class{
