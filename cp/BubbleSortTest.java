@@ -27,10 +27,8 @@ public class BubbleSortTest {
 	}
 
 	private static void printArray (int[] arr){
-		System.out.print("[");
 		for(int i : arr){
-			System.out.print(i+" ");
+			System.out.println(i);
 		}
-		System.out.print("]");
 	}
 } 
