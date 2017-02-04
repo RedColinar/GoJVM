@@ -8,7 +8,7 @@ var internedStrings = map[string]*Object{}
 //把go字符串转化成java字符串对象
 func JString(loader *ClassLoader, goStr string) *Object{
 
-	if internerStr,ok := internedStrings[goStr];ok{
+	if internedStr,ok := internedStrings[goStr];ok{
 		return internedStr
 	}
 
@@ -22,7 +22,7 @@ func JString(loader *ClassLoader, goStr string) *Object{
 	return jStr
 }
 
-func GoString() string{
+func GoString(jStr *Object) string{
 	charArr := jStr.GetRefVar("value", "[C")
 	return utf16ToString(charArr.Chars())
 }
