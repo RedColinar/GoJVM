@@ -1,9 +1,9 @@
 package references
 
 import "fmt"
-import "jvmgo/ch08/instructions/base"
-import "jvmgo/ch08/rtda"
-import "jvmgo/ch08/rtda/heap"
+import "jvmgo/ch09/instructions/base"
+import "jvmgo/ch09/rtda"
+import "jvmgo/ch09/rtda/heap"
 //调用实例方法，基于类来调度
 type INVOKE_VIRTUAL struct{ base.Index16Instruction }
 

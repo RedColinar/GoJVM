@@ -1,7 +1,7 @@
 package control
 
-import "jvmgo/ch08/instructions/base"
-import "jvmgo/ch08/rtda"
+import "jvmgo/ch09/instructions/base"
+import "jvmgo/ch09/rtda"
 //goto指令无条件跳转
 type GOTO struct{ base.BranchInstruction }
 

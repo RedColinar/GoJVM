@@ -1,7 +1,7 @@
 package constants
 
-import "jvmgo/ch08/instructions/base"
-import "jvmgo/ch08/rtda"
+import "jvmgo/ch09/instructions/base"
+import "jvmgo/ch09/rtda"
 //把隐含在操作码中的常量推入操作数栈顶，不用FetchOperands()
 type ACONST_NULL struct { base.NoOperandsInstruction }
 type DCONST_0 struct { base.NoOperandsInstruction }

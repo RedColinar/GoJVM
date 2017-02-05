@@ -1,7 +1,7 @@
 package heap
 
 import "fmt"
-import "jvmgo/ch08/classfile"
+import "jvmgo/ch09/classfile"
 
 type Constant interface{}
 //运行时常量池

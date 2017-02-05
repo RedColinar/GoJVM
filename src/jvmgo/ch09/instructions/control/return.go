@@ -1,7 +1,7 @@
 package control
 
-import "jvmgo/ch08/instructions/base"
-import "jvmgo/ch08/rtda"
+import "jvmgo/ch09/instructions/base"
+import "jvmgo/ch09/rtda"
 //返回指令。6条指令都不需要操作数
 type RETURN struct{ base.NoOperandsInstruction }//返回空
 type ARETURN struct{ base.NoOperandsInstruction }

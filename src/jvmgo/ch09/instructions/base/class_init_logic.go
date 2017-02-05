@@ -1,7 +1,7 @@
 package base
 
-import "jvmgo/ch08/rtda"
-import "jvmgo/ch08/rtda/heap"
+import "jvmgo/ch09/rtda"
+import "jvmgo/ch09/rtda/heap"
 func InitClass(thread *rtda.Thread, class *heap.Class){
 	//先把类的initStarted状态设置成true，以免进入死循环
 	class.StartInit()

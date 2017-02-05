@@ -1,8 +1,8 @@
 package stores
 
-import "jvmgo/ch08/instructions/base"
-import "jvmgo/ch08/rtda"
-import "jvmgo/ch08/rtda/heap"
+import "jvmgo/ch09/instructions/base"
+import "jvmgo/ch09/rtda"
+import "jvmgo/ch09/rtda/heap"
 
 type AASTORE struct{ base.NoOperandsInstruction }
 type BASTORE struct{ base.NoOperandsInstruction }

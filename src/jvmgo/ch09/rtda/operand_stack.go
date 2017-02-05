@@ -1,7 +1,7 @@
 package rtda
 
 import "math"
-import "jvmgo/ch08/rtda/heap"
+import "jvmgo/ch09/rtda/heap"
 //操作数栈
 type OperandStack struct {
 	//size用于记录栈顶位置

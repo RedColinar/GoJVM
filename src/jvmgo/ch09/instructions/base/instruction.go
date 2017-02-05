@@ -1,6 +1,6 @@
 package base
 
-import "jvmgo/ch08/rtda"
+import "jvmgo/ch09/rtda"
 //指令接口，所有指令都实现这个接口
 type Instruction interface {
 	//FetchOperands()提取操作数

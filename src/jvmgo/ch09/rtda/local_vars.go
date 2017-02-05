@@ -1,7 +1,7 @@
 package rtda
 
 import "math"
-import "jvmgo/ch08/rtda/heap"
+import "jvmgo/ch09/rtda/heap"
 //局部变量表
 type LocalVars []Slot
 

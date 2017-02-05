@@ -1,6 +1,6 @@
 package heap
 
-import "jvmgo/ch08/classfile"
+import "jvmgo/ch09/classfile"
 //字段不包含字节码
 type Field struct{
 	//ClassMember包含copyMemberInfo()

@@ -1,8 +1,8 @@
 package loads
 
-import "jvmgo/ch08/instructions/base"
-import "jvmgo/ch08/rtda"
-import "jvmgo/ch08/rtda/heap"
+import "jvmgo/ch09/instructions/base"
+import "jvmgo/ch09/rtda"
+import "jvmgo/ch09/rtda/heap"
 //<t>aload系列指令按索引取数组元素值，然后推入操作数栈
 type AALOAD struct{ base.NoOperandsInstruction }
 type BALOAD struct{ base.NoOperandsInstruction }

@@ -1,7 +1,7 @@
 package constants
 
-import "jvmgo/ch08/instructions/base"
-import "jvmgo/ch08/rtda"
+import "jvmgo/ch09/instructions/base"
+import "jvmgo/ch09/rtda"
 //从操作数中获取byte型或short型整数，然后拓展成int型，推入栈顶
 type BIPUSH struct { val int8 } //push byte
 type SIPUSH struct { val int16 }//push short

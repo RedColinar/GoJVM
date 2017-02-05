@@ -1,8 +1,7 @@
 package base
 
-import "fmt"
-import "jvmgo/ch08/rtda"
-import "jvmgo/ch08/rtda/heap"
+import "jvmgo/ch09/rtda"
+import "jvmgo/ch09/rtda/heap"
 
 func InvokeMethod(invokerFrame  *rtda.Frame, method *heap.Method){
 	thread := invokerFrame.Thread()
@@ -17,12 +16,12 @@ func InvokeMethod(invokerFrame  *rtda.Frame, method *heap.Method){
 		}
 	}
 	//跳过所有的registerNatives()
-	if method.IsNative(){
+	/*if method.IsNative(){
 		if method.Name() == "registerNatives"{
 			thread.PopFrame()
 		}else{
 			panic(fmt.Sprintf("native  method: %v.%v%v\n",
 				method.Class().Name(), method.Name(), method.Descriptor()))
 		}
-	}
+	}*/
 }

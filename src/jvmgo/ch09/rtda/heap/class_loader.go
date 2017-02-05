@@ -2,8 +2,8 @@ package heap
 
 
 import "fmt"
-import "jvmgo/ch08/classfile"
-import "jvmgo/ch08/classpath"
+import "jvmgo/ch09/classfile"
+import "jvmgo/ch09/classpath"
 //类加载器
 type ClassLoader struct{
 	cp 			*classpath.Classpath

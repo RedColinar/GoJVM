@@ -1,7 +1,7 @@
 package stores
 
-import "jvmgo/ch08/instructions/base"
-import "jvmgo/ch08/rtda"
+import "jvmgo/ch09/instructions/base"
+import "jvmgo/ch09/rtda"
 
 //存储指令把变量从操作数栈顶弹出，然后存入局部变量表
 type FSTORE struct { base.Index8Instruction}

@@ -1,7 +1,7 @@
 package loads
 
-import "jvmgo/ch08/instructions/base"
-import "jvmgo/ch08/rtda"
+import "jvmgo/ch09/instructions/base"
+import "jvmgo/ch09/rtda"
 
 type LLOAD struct{ base.Index8Instruction }
 type LLOAD_0 struct { base.NoOperandsInstruction }

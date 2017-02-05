@@ -1,7 +1,7 @@
 package extended
 
-import "jvmgo/ch08/instructions/base"
-import "jvmgo/ch08/rtda"
+import "jvmgo/ch09/instructions/base"
+import "jvmgo/ch09/rtda"
 
 type IFNULL struct{ base.BranchInstruction }
 type IFNONNULL struct{ base.BranchInstruction }

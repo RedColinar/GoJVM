@@ -1,6 +1,6 @@
 package rtda
 
-import "jvmgo/ch08/rtda/heap"
+import "jvmgo/ch09/rtda/heap"
 
 type Thread struct {
 	pc 		int

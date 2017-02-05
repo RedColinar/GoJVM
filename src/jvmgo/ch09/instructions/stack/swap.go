@@ -1,7 +1,7 @@
 package stack
 
-import "jvmgo/ch08/instructions/base"
-import "jvmgo/ch08/rtda"
+import "jvmgo/ch09/instructions/base"
+import "jvmgo/ch09/rtda"
 
 type SWAP struct{ base.NoOperandsInstruction }
 //SWAP用来交换栈顶两个变量

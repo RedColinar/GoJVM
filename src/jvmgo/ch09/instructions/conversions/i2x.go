@@ -1,7 +1,7 @@
 package conversions
 
-import "jvmgo/ch08/instructions/base"
-import "jvmgo/ch08/rtda"
+import "jvmgo/ch09/instructions/base"
+import "jvmgo/ch09/rtda"
 
 type I2D struct {base.NoOperandsInstruction}
 type I2L struct {base.NoOperandsInstruction}

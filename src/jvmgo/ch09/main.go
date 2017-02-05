@@ -2,8 +2,8 @@
 
 import  "fmt"
 import  "strings"
-import  "jvmgo/ch08/classpath"
-import  "jvmgo/ch08/rtda/heap"
+import  "jvmgo/ch09/classpath"
+import  "jvmgo/ch09/rtda/heap"
 
 
 func main() {

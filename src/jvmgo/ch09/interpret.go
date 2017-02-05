@@ -1,10 +1,10 @@
 package main
 
 import "fmt"
-import "jvmgo/ch08/instructions"
-import "jvmgo/ch08/instructions/base"
-import "jvmgo/ch08/rtda"
-import "jvmgo/ch08/rtda/heap"
+import "jvmgo/ch09/instructions"
+import "jvmgo/ch09/instructions/base"
+import "jvmgo/ch09/rtda"
+import "jvmgo/ch09/rtda/heap"
 //解释器
 //logInst 控制是否把指令执行信息打印到控制台
 func interpret(method *heap.Method, logInst bool, args []string){

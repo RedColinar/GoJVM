@@ -1,8 +1,8 @@
 package references
 
-import "jvmgo/ch08/instructions/base"
-import "jvmgo/ch08/rtda"
-import "jvmgo/ch08/rtda/heap"
+import "jvmgo/ch09/instructions/base"
+import "jvmgo/ch09/rtda"
+import "jvmgo/ch09/rtda/heap"
 
 type INVOKE_SPECIAL struct{ base.Index16Instruction }
 //调用初始化方法，特殊处理父类的，私有的，和实例初始方法调用

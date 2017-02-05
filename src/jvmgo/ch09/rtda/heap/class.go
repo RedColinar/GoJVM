@@ -1,7 +1,7 @@
 package heap
 
 import "strings"
-import "jvmgo/ch08/classfile"
+import "jvmgo/ch09/classfile"
 type Class struct{
 	//访问标志
 	accessFlags		uint16

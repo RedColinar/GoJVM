@@ -1,7 +1,7 @@
 package conversions
 
-import "jvmgo/ch08/instructions/base"
-import "jvmgo/ch08/rtda"
+import "jvmgo/ch09/instructions/base"
+import "jvmgo/ch09/rtda"
 
 type D2F struct{ base.NoOperandsInstruction }
 type D2I struct{ base.NoOperandsInstruction }

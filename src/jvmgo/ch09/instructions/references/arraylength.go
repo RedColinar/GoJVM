@@ -1,7 +1,7 @@
 package references
 
-import "jvmgo/ch08/instructions/base"
-import "jvmgo/ch08/rtda"
+import "jvmgo/ch09/instructions/base"
+import "jvmgo/ch09/rtda"
 
 type ARRAY_LENGTH struct{ base.NoOperandsInstruction }
 //arraylength指令只需要一个操作数，即数组引用
