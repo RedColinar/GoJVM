@@ -23,7 +23,7 @@ func _ldc(frame *rtda.Frame, index uint) {
 	
 	switch c.(type){
 	case int32: stack.PushInt(c.(int32))
-	case  float32: stack.PushFloat(c.(float32))
+	case float32: stack.PushFloat(c.(float32))
 	case string: 
 		//如果_ldc试图从运行时常量池中加载字符串常亮，先通过常量拿到go字符串，然后把它转化成java字符串实例
 		internedStr := heap.JString(class.Loader(), c.(string))
