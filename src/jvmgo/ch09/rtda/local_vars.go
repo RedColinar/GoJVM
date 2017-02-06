@@ -2,7 +2,7 @@ package rtda
 
 import "math"
 import "jvmgo/ch09/rtda/heap"
-//局部变量表
+//局部变量表,slice类型
 type LocalVars []Slot
 
 func newLocalVars(maxLocals uint) LocalVars {
