@@ -19,6 +19,8 @@ type Class struct{
 	//
 	staticVars		Slots
 	initStarted		bool
+	
+	jClass			*Object
 }
 
 func newClass(cf *classfile.ClassFile) *Class{
