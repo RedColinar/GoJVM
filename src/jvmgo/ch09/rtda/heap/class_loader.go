@@ -13,24 +13,47 @@ type ClassLoader struct{
 }
 
 func NewClassLoader(cp *classpath.Classpath, verboseFlag bool) *ClassLoader{
-	return &ClassLoader{
+	loader := &ClassLoader{
 		cp:				cp,
 		verboseFlag:	verboseFlag,
 		classMap:		make(map[string]*Class),
 	}
+	loader.loadBasicClasses()
+	return loader
+}
+func (self *ClassLoader) loadBasicClasses(){
+	jlClassClass := self.LoadClass("java/lang/Class")
+	//遍历classMap,给已经加载的每一个类 关联类对象
+	for _, class == range self.classMap{
+		if class.jClass == nil{
+			class.jClass = jlClassClass.NewObject()
+			class.jClass.extra = class
+		}
+	}
 }
 //把类数据加载到方法区
 func (self *ClassLoader) LoadClass(name string) *Class{
+	//判断要加载的类名是否在已加载的类中
 	if class, ok := self.classMap[name]; ok  {
 		//类已加载 
 		return class
 	}
+
+	var class *Class
 	//数组类和普通类有很大的不同，它的数据并不是来自class文件，
 	//而是由java虚拟机在运行期间生成
 	if name[0] == '['{
 		return self.loadArrayClass(name)
+	}else{
+		class = self.loadNonArrayClass(name)
 	}
-	return self.loadNonArrayClass(name)
+	//看java.lang.Class是否已经加载，如果是，则给类关联类对象
+	if jlClassClass, ok := self.classMap["java/lang/Class"];ok{
+		class.jClass = jlClassClass.NewObject()
+		class.jClass.extra = class
+	}
+
+	return class
 }
 //加载非数组类
 func (self *ClassLoader) loadNonArrayClass(name string) *Class{

@@ -19,7 +19,7 @@ type Class struct{
 	//
 	staticVars		Slots
 	initStarted		bool
-	
+	//java.lang.Class实例
 	jClass			*Object
 }
 
@@ -139,6 +139,9 @@ func (self *Class) SuperClass() *Class {
 }
 func (self *Class) StaticVars() Slots {
 	return self.staticVars
+}
+func (self *Class) JClass()*Object{
+	return self.jClass
 }
 //模拟初始化
 func (self *Class) InitStarted() bool {
