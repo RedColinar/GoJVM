@@ -28,7 +28,7 @@ func newMethod(class *Class, cfMethod *classfile.MemberInfo) *Method{
 	method.copyMemberInfo(cfMethod)
 	method.copyAttributes(cfMethod)
 	md := parseMethodDescriptor(method.descriptor)
-	method.calcArgSlotCount(md.parameterType)
+	method.calcArgSlotCount(md.parameterTypes)
 	//如果是个本地方法，则注入字节码和其他信息
 	if method.IsNative(){
 		method.injectCodeAttribute(md.returnType)
@@ -57,19 +57,17 @@ func (self *Method) copyAttributes(cfMethod *classfile.MemberInfo){
 	}
 }
 //
-func (self *Method) calcArgSlotCount(paramTypes []string) {
+func (self *Method) calcArgSlotCount(paramTypes []string) {	
 	for _, paramType := range paramTypes {
-		parsedDescriptor := parseMethodDescriptor(self.descriptor)
-		for _, paramType := range parsedDescriptor.parameterTypes {
-			self.argSlotCount++
-			if paramType == "J" || paramType == "D" {
-				self.argSlotCount++
-			}
-		}
-		if !self.IsStatic() {
+		self.argSlotCount++
+		if paramType == "J" || paramType == "D" {
 			self.argSlotCount++
 		}
 	}
+	if !self.IsStatic() {
+		self.argSlotCount++
+	}
+	
 }
 //getter
 func (self *Method) MaxStack() uint {

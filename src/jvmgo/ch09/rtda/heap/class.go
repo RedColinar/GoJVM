@@ -122,6 +122,9 @@ func (self *Class) getMethod(name, descriptor string, isStatic bool) *Method {
 func (self *Class) Name() string {
 	return self.name
 }
+func (self *Class) JavaName() string{
+	return strings.Replace(self.name,"/",".", -1 )
+}
 func (self *Class) ConstantPool() *ConstantPool {
 	return self.constantPool
 }

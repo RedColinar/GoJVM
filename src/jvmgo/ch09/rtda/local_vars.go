@@ -2,7 +2,7 @@ package rtda
 
 import "math"
 import "jvmgo/ch09/rtda/heap"
-//局部变量表,slice类型
+//局部变量表,slice类型,指针类型
 type LocalVars []Slot
 
 func newLocalVars(maxLocals uint) LocalVars {
@@ -54,7 +54,9 @@ func (self LocalVars) SetRef(index  uint,ref *heap.Object){
 func (self LocalVars) GetRef(index uint) *heap.Object{
 	return self[index].ref
 }
-
+func (self LocalVars) GetThis() *heap.Object{
+	return self.GetRef(0)
+}
 func (self LocalVars) SetSlot(index uint, slot Slot){
 	self[index] = slot
 }

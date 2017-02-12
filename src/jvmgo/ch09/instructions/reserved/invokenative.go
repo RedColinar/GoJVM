@@ -3,6 +3,8 @@ package reserved
 import "jvmgo/ch09/instructions/base"
 import "jvmgo/ch09/rtda"
 import "jvmgo/ch09/native"
+//import for side effect
+import _ "jvmgo/ch09/native/java/lang"
 //0xfe指令
 type INVOKE_NATIVE struct{ base.NoOperandsInstruction }
 

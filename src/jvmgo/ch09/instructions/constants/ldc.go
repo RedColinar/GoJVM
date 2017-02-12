@@ -29,7 +29,11 @@ func _ldc(frame *rtda.Frame, index uint) {
 		internedStr := heap.JString(class.Loader(), c.(string))
 		//把引用推入栈顶
 		stack.PushRef(internedStr)
-	//cse *heap.ClassRef:
+	//运行时如果常量池中的常量是类引用，则解析类引用，然后把类的的类对象推入操作数栈顶	
+	case *heap.ClassRef:
+		classRef := c.(*heap.ClassRef)
+		classObj := classRef.ResolvedClass().JClass()
+		stack.PushRef(classObj)
 	default:  panic("todo: ldc!")
 	}
 }

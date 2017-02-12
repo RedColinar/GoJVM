@@ -19,17 +19,37 @@ func NewClassLoader(cp *classpath.Classpath, verboseFlag bool) *ClassLoader{
 		classMap:		make(map[string]*Class),
 	}
 	loader.loadBasicClasses()
+	loader.loadPrimitiveClasses()
 	return loader
 }
 func (self *ClassLoader) loadBasicClasses(){
 	jlClassClass := self.LoadClass("java/lang/Class")
 	//遍历classMap,给已经加载的每一个类 关联类对象
-	for _, class == range self.classMap{
+	for _, class := range self.classMap{
 		if class.jClass == nil{
 			class.jClass = jlClassClass.NewObject()
 			class.jClass.extra = class
 		}
 	}
+}
+//加载void和基本类型的类
+func (self *ClassLoader) loadPrimitiveClasses(){
+	for primitiveType, _ := range primitiveTypes{
+		//promitiveType是void，int，float等
+		self.loadPrimitiveClass(primitiveType)
+	}
+}
+//加载void和基本类型的类的具体方法
+func (self *ClassLoader) loadPrimitiveClass(className string){
+	class := &Class{
+		accessFlags: 	ACC_PUBLIC,
+		name:		 	className,
+		loader:			self,
+		initStarted:	true,
+	}
+	class.jClass = self.classMap["java/lang/Class"].NewObject()
+	class.jClass.extra = class
+	self.classMap[className] = class
 }
 //把类数据加载到方法区
 func (self *ClassLoader) LoadClass(name string) *Class{
