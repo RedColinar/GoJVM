@@ -6,7 +6,7 @@ import "jvmgo/ch09/rtda"
 import "jvmgo/ch09/rtda/heap"
 
 func init(){
-	native.Register("sun/misc/VM","initialize",()V,initialize)
+	native.Register("sun/misc/VM","initialize","()V",initialize)
 }
 
 func initialize(frame *rtda.Frame){

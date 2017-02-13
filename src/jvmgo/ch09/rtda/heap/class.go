@@ -67,6 +67,11 @@ func (self *Class) IsAnnotation() bool {
 func (self *Class) IsEnum() bool {
 	return 0 != self.accessFlags&ACC_ENUM
 }
+func (self *Class) IsPrimitive() bool {
+	_, ok := primitiveTypes[self.name]
+	return ok
+}
+
 //判断是否有访问权限
 func (self *Class) isAccessibleTo(other *Class) bool{
 	return self.IsPublic() || self.GetPackageName() == other.GetPackageName()
@@ -94,6 +99,19 @@ func (self *Class) getStaticMethod(name,descriptor string) *Method {
 func (self *Class) GetClinitMethod() *Method {
 	return self.getStaticMethod("<clinit>", "()V")
 }
+//改bug时增加的三个方法
+func (self *Class) GetInstanceMethod(name, descriptor string) *Method {
+	return self.getMethod(name, descriptor, false)
+}
+func (self *Class) GetRefVar(fieldName, fieldDescriptor string) *Object {
+	field := self.getField(fieldName, fieldDescriptor, true)
+	return self.staticVars.GetRef(field.slotId)
+}
+func (self *Class) SetRefVar(fieldName, fieldDescriptor string, ref *Object) {
+	field := self.getField(fieldName, fieldDescriptor, true)
+	self.staticVars.SetRef(field.slotId, ref)
+}
+
 func (self *Class) getField(name, descriptor string, isStatic bool) *Field{
 	for c := self; c != nil; c = c.superClass {
 		for _, field := range c.fields{

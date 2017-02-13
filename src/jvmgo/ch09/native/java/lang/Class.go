@@ -8,7 +8,7 @@ const jlClass = "java/lang/Class"
 
 func init(){
 	native.Register(jlClass, "getPrimitiveClass","(Ljava/lang/String;)Ljava/lang/Class;",getPrimitiveClass)
-	native.Register(jlClass, "getName0","()Ljava/lang/String")
+	native.Register(jlClass, "getName0","()Ljava/lang/String",getName0)
 	native.Register(jlClass, "desiredAssertionStatus0","(Ljava/lang/Class;)Z",desiredAssertionStatus0)
 }
 //static native Class<?> getPrimitiveClass(string name);

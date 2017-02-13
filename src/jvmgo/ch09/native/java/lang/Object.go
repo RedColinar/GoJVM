@@ -1,5 +1,6 @@
 package lang
 
+import "unsafe"
 import "jvmgo/ch09/native"
 import "jvmgo/ch09/rtda"
 
