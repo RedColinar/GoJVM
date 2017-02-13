@@ -63,7 +63,7 @@ func (self *ClassLoader) LoadClass(name string) *Class{
 	//数组类和普通类有很大的不同，它的数据并不是来自class文件，
 	//而是由java虚拟机在运行期间生成
 	if name[0] == '['{
-		return self.loadArrayClass(name)
+		class = self.loadArrayClass(name)
 	}else{
 		class = self.loadNonArrayClass(name)
 	}

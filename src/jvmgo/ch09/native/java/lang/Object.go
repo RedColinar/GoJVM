@@ -5,14 +5,16 @@ import "jvmgo/ch09/native"
 import "jvmgo/ch09/rtda"
 
 const jlObject = "java/lang/Object"
-//注册本地方法
-func init(){
-	native.Register(jlObject, "getClass","()Ljava/lang/Class;",getClass)
+
+func init() {
+	native.Register(jlObject, "getClass", "()Ljava/lang/Class;", getClass)
 	native.Register(jlObject, "hashCode", "()I", hashCode)
 	native.Register(jlObject, "clone", "()Ljava/lang/Object;", clone)
 }
-//public final native Class<?> getClass();
-func getClass(frame *rtda.Frame){
+
+// public final native Class<?> getClass();
+// ()Ljava/lang/Class;
+func getClass(frame *rtda.Frame) {
 	this := frame.LocalVars().GetThis()
 	class := this.Class().JClass()
 	frame.OperandStack().PushRef(class)
