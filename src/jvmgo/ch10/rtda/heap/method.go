@@ -12,6 +12,8 @@ type Method struct{
 	//字节码
 	code			[]byte
 	argSlotCount	uint
+	//异常表
+	exceptionTable	ExceptionTable
 }
 
 func newMethods(class *Class,cfMethods []*classfile.MemberInfo) []*Method{
@@ -54,6 +56,18 @@ func (self *Method) copyAttributes(cfMethod *classfile.MemberInfo){
 		self.maxStack = codeAttr.MaxStack()
 		self.maxLocals = codeAttr.MaxLocals()
 		self.code = codeAttr.Code()
+		//从code属性中复制异常处理表
+		self.exceptionTable = newExceptionTable(codeAttr.ExceptionTable(),
+			self.class.constantPool)
+	}
+}
+//搜索异常处理表
+func (self *Method) FindExceptionHandler(exClass *Class, pc int){
+	handler := self.exceptionTable.findExceptionHandler(exClass *Class, pc int) int{
+		if handler != nil{
+			return handler.handlerPc
+		}
+		return -1
 	}
 }
 //
