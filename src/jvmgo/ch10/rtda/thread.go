@@ -12,6 +12,13 @@ func NewThread() *Thread{
 		stack: newStack(1024),
 	}
 }
+//清空虚拟机栈
+func (self *Thread) ClearStack(){
+	self.stack.clear()
+}
+func (self *Thread) GetFrames() []*Frame{
+	return self.stack.getFrames()
+}
 func (self *Thread) PC() int {return self.pc}
 func (self *Thread) SetPC(pc int){self.pc = pc}
 func (self *Thread) PushFrame(frame *Frame){

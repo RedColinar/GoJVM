@@ -14,6 +14,8 @@ type Method struct{
 	argSlotCount	uint
 	//异常表
 	exceptionTable	ExceptionTable
+	//行号表
+	lineNumberTable *classfile.LineNumberTableAttribute
 }
 
 func newMethods(class *Class,cfMethods []*classfile.MemberInfo) []*Method{
@@ -56,19 +58,29 @@ func (self *Method) copyAttributes(cfMethod *classfile.MemberInfo){
 		self.maxStack = codeAttr.MaxStack()
 		self.maxLocals = codeAttr.MaxLocals()
 		self.code = codeAttr.Code()
+		self.lineNumberTable = codeAttr.LineNumberTableAttribute()
 		//从code属性中复制异常处理表
 		self.exceptionTable = newExceptionTable(codeAttr.ExceptionTable(),
 			self.class.constantPool)
 	}
 }
-//搜索异常处理表
-func (self *Method) FindExceptionHandler(exClass *Class, pc int){
-	handler := self.exceptionTable.findExceptionHandler(exClass *Class, pc int) int{
-		if handler != nil{
-			return handler.handlerPc
-		}
+//获取行号方法,不是所有的方法都有行号表
+func (self *Method) GetLineNumber(pc int)   int{
+	if self.IsNative(){
+		return -2
+	}
+	if self.lineNumberTable == nil{
 		return -1
 	}
+	return self.lineNumberTable.GetLineNumber(pc)
+}
+//搜索异常处理表
+func (self *Method) FindExceptionHandler(exClass *Class, pc int) int{
+	handler := self.exceptionTable.findExceptionHandler(exClass, pc)
+	if handler != nil{
+		return handler.handlerPc
+	}
+	return -1
 }
 //
 func (self *Method) calcArgSlotCount(paramTypes []string) {	

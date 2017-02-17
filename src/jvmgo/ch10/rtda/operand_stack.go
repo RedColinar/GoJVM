@@ -17,6 +17,14 @@ func newOperandStack(maxStack uint) *OperandStack{
 	}
 	return nil
 }
+//清空操作数栈
+func (self *OperandStack) Clear(){
+	self.size = 0
+	for i := range self.slots{
+		self.slots[i].ref = nil
+	}
+}
+
 //推入变量
 func (self *OperandStack) PushInt(val int32){
 	self.slots[self.size].num = val

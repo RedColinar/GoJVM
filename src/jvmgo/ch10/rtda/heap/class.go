@@ -21,6 +21,8 @@ type Class struct{
 	initStarted		bool
 	//java.lang.Class实例
 	jClass			*Object
+	//源文件名
+	sourceFile		string
 }
 
 func newClass(cf *classfile.ClassFile) *Class{
@@ -32,9 +34,16 @@ func newClass(cf *classfile.ClassFile) *Class{
 	class.constantPool = newConstantPool(class,cf.ConstantPool())
 	class.fields = newFields(class,cf.Fields())
 	class.methods = newMethods(class,cf.Methods())
+	class.sourceFile = getSourceFile(cf)
 	return class
 }
-
+//源文件名在ClassFile结构的属性表中，getSourceFile()函数提取信息
+func getSourceFile(cf *classfile.ClassFile) string {
+	if sfAttr := cf.SourceFileAttribute(); sfAttr != nil{
+		return sfAttr.FileName()
+	}
+	return "Unknown"
+}
 func (self *Class) NewObject() *Object{
 	return newObject(self)
 }
@@ -163,6 +172,9 @@ func (self *Class) StaticVars() Slots {
 }
 func (self *Class) JClass()*Object{
 	return self.jClass
+}
+func (self *Class) SourceFile() string{
+	return self.sourceFile
 }
 //模拟初始化
 func (self *Class) InitStarted() bool {

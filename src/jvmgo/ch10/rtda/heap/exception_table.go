@@ -34,7 +34,7 @@ func getCatchType(index uint, cp *ConstantPool) *ClassRef{
 
 func (self ExceptionTable) findExceptionHandler(exClass *Class,
 		pc int) *ExceptionHandler{
-	for, handler := range self{
+	for _, handler := range self{
 		if pc >= handler.startPc && pc < handler.endPc{
 			if handler.catchType == nil{
 				return handler
