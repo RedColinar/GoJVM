@@ -1,10 +1,11 @@
 package lang
 
+import "fmt"
 import "jvmgo/ch10/native"
 import "jvmgo/ch10/rtda"
 import "jvmgo/ch10/rtda/heap"
 
-func inti(){
+func init(){
 	native.Register("java/lang/Throwable","fillInStackTrace",
 		"(I)Ljava/lang/Throwable;",fillInStackTrace)
 }
@@ -25,6 +26,11 @@ type StackTraceElement struct{
 	methodName		string
 	//帧正在执行的第几行代码
 	lineNumber		int
+}
+//打印虚拟机栈信息
+func (self *StackTraceElement) String() string {
+	return fmt.Sprintf("%s.%s(%s:%d)",
+		self.className, self.methodName, self.fileName, self.lineNumber)
 }
 //好像返回值 不能换行
 func creatStackTraceElements(tObj *heap.Object, thread *rtda.Thread) []*StackTraceElement{
