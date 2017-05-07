@@ -44,6 +44,7 @@ func newConstantPool(class *Class,cfCp classfile.ConstantPool) *ConstantPool{
 				doubleInfo := cpInfo.(*classfile.ConstantDoubleInfo)
 				consts[i] = doubleInfo.Value()
 				i++
+			//如果是字符串常量，直接取出Go语言字符串，放进consts中	
 			case *classfile.ConstantStringInfo:
 				stringInfo := cpInfo.(*classfile.ConstantStringInfo)
 				consts[i] = stringInfo.String()
